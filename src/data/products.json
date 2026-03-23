@@ -1,0 +1,548 @@
+[
+  {
+    "id": 1,
+    "name": "Velvet Kiss Labial Mate",
+    "price": 28000,
+    "originalPrice": 35000,
+    "description": "Labial mate de larga duración con acabado aterciopelado. Fórmula hidratante que no reseca los labios. Disponible en tonos irresistibles.",
+    "images": [
+      "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1588006173527-b1ce965a3e01?w=500&h=600&fit=crop"
+    ],
+    "category": "labios",
+    "sizes": ["Mini", "Full Size"],
+    "colors": ["Rojo Clásico", "Rosa Nude", "Berry"],
+    "inStock": true,
+    "rating": 4.5,
+    "reviews": 187,
+    "tags": ["labial", "mate", "larga duración"],
+    "featured": true
+  },
+  {
+    "id": 2,
+    "name": "Gloss Shine Brillo Labial",
+    "price": 28000,
+    "description": "Brillo labial con acabado glossy y destellos sutiles. Aroma delicioso a fresa y vainilla. Hidrata mientras da color.",
+    "images": [
+      "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1599948128020-9a44505b0d1b?w=500&h=600&fit=crop"
+    ],
+    "category": "labios",
+    "sizes": ["Full Size"],
+    "colors": ["Rosa Nude", "Champagne"],
+    "inStock": true,
+    "rating": 4.2,
+    "reviews": 134,
+    "tags": ["gloss", "brillo", "hidratante"],
+    "featured": false
+  },
+  {
+    "id": 3,
+    "name": "Lip Oil Hidratante Glow",
+    "price": 42000,
+    "description": "Aceite labial hidratante con efecto glow. Enriquecido con aceite de coco y extracto de rosa para labios suaves y luminosos.",
+    "images": [
+      "https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&h=600&fit=crop"
+    ],
+    "category": "labios",
+    "sizes": ["Full Size"],
+    "colors": ["Rose Gold", "Champagne"],
+    "inStock": true,
+    "rating": 4.7,
+    "reviews": 203,
+    "tags": ["lip oil", "hidratante", "glow"],
+    "featured": true
+  },
+  {
+    "id": 4,
+    "name": "Tinta Labial Long Stay",
+    "price": 31000,
+    "description": "Tinta labial de ultra larga duración. Color intenso que no transfiere. Fórmula ligera que se siente como una segunda piel.",
+    "images": [
+      "https://images.unsplash.com/photo-1619451334792-150fd785ee74?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1583241800698-e8ab01830a07?w=500&h=600&fit=crop"
+    ],
+    "category": "labios",
+    "sizes": ["Full Size"],
+    "colors": ["Rojo Clásico", "Berry"],
+    "inStock": true,
+    "rating": 4.4,
+    "reviews": 156,
+    "tags": ["tinta labial", "larga duración", "mate"],
+    "featured": false
+  },
+  {
+    "id": 5,
+    "name": "Kit Labial 3 en 1 Glam",
+    "price": 55250,
+    "originalPrice": 65000,
+    "description": "Kit completo que incluye delineador de labios, labial mate y gloss. Todo lo que necesitas para un look de labios perfecto en un solo set.",
+    "images": [
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&h=600&fit=crop"
+    ],
+    "category": "labios",
+    "sizes": ["Kit Completo"],
+    "colors": ["Rosa Nude", "Rojo Clásico", "Berry"],
+    "inStock": true,
+    "rating": 4.6,
+    "reviews": 245,
+    "tags": ["kit", "labial", "gloss", "delineador"],
+    "featured": true
+  },
+  {
+    "id": 6,
+    "name": "Bálsamo Labial Color Care",
+    "price": 18000,
+    "description": "Bálsamo labial con un toque de color y máxima hidratación. Aroma a miel y cereza. Protege y cuida tus labios todo el día.",
+    "images": [
+      "https://images.unsplash.com/photo-1601049676868-f792e0faeb41?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=500&h=600&fit=crop"
+    ],
+    "category": "labios",
+    "sizes": ["Full Size"],
+    "colors": ["Rosa Nude", "Champagne"],
+    "inStock": true,
+    "rating": 4.3,
+    "reviews": 98,
+    "tags": ["bálsamo", "hidratante", "color"],
+    "featured": false
+  },
+  {
+    "id": 7,
+    "name": "Máscara Volumen Extreme Lash",
+    "price": 40000,
+    "description": "Máscara de pestañas con efecto volumen extremo y alargamiento. Cepillo de fibras que separa y define cada pestaña.",
+    "images": [
+      "https://images.unsplash.com/photo-1631214500115-598fc2cb8ada?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1583241800698-e8ab01830a07?w=500&h=600&fit=crop"
+    ],
+    "category": "ojos",
+    "sizes": ["Full Size"],
+    "colors": ["Negro Intenso"],
+    "inStock": true,
+    "rating": 4.6,
+    "reviews": 312,
+    "tags": ["máscara", "pestañas", "volumen"],
+    "featured": true
+  },
+  {
+    "id": 8,
+    "name": "Delineador Líquido Precision",
+    "price": 22000,
+    "description": "Delineador líquido de punta fina ultra precisa. Secado rápido y resistente al agua. Ideal para trazos definidos y cat eyes perfectos.",
+    "images": [
+      "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1599948128020-9a44505b0d1b?w=500&h=600&fit=crop"
+    ],
+    "category": "ojos",
+    "sizes": ["Full Size"],
+    "colors": ["Negro Intenso", "Marrón"],
+    "inStock": true,
+    "rating": 4.4,
+    "reviews": 178,
+    "tags": ["delineador", "líquido", "precisión"],
+    "featured": false
+  },
+  {
+    "id": 9,
+    "name": "Paleta Sombras Nude Pro",
+    "price": 75000,
+    "description": "Paleta profesional con 12 tonos neutros entre mates, satinados y shimmer. Pigmentación intensa y fácil difuminado para looks naturales o glam.",
+    "images": [
+      "https://images.unsplash.com/photo-1583241800698-e8ab01830a07?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&h=600&fit=crop"
+    ],
+    "category": "ojos",
+    "sizes": ["Full Size"],
+    "colors": ["Rosa Nude", "Champagne", "Marrón", "Negro Intenso"],
+    "inStock": true,
+    "rating": 4.8,
+    "reviews": 389,
+    "tags": ["paleta", "sombras", "nude", "profesional"],
+    "featured": true
+  },
+  {
+    "id": 10,
+    "name": "Sombra Individual Glitter Pop",
+    "price": 20000,
+    "description": "Sombra individual con glitter de alta pigmentación. Partículas brillantes que capturan la luz para un look deslumbrante.",
+    "images": [
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1583241800698-e8ab01830a07?w=500&h=600&fit=crop"
+    ],
+    "category": "ojos",
+    "sizes": ["Individual"],
+    "colors": ["Rose Gold", "Champagne"],
+    "inStock": true,
+    "rating": 4.1,
+    "reviews": 87,
+    "tags": ["sombra", "glitter", "brillo"],
+    "featured": false
+  },
+  {
+    "id": 11,
+    "name": "Lápiz de Cejas Define Brow",
+    "price": 19000,
+    "description": "Lápiz de cejas con punta ultra fina para trazos naturales tipo pelo a pelo. Incluye cepillo para difuminar y peinar.",
+    "images": [
+      "https://images.unsplash.com/photo-1597225244660-1cd128c64284?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&h=600&fit=crop"
+    ],
+    "category": "ojos",
+    "sizes": ["Full Size"],
+    "colors": ["Marrón", "Negro Intenso", "Champagne"],
+    "inStock": true,
+    "rating": 4.3,
+    "reviews": 145,
+    "tags": ["cejas", "lápiz", "definición"],
+    "featured": false
+  },
+  {
+    "id": 12,
+    "name": "Primer de Pestañas Lash Base",
+    "price": 22500,
+    "originalPrice": 25000,
+    "description": "Primer de pestañas que prepara, fortalece y alarga antes de la máscara. Fórmula con queratina y biotina para pestañas más saludables.",
+    "images": [
+      "https://images.unsplash.com/photo-1631214500115-598fc2cb8ada?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&h=600&fit=crop"
+    ],
+    "category": "ojos",
+    "sizes": ["Full Size"],
+    "colors": ["Blanco Perla"],
+    "inStock": true,
+    "rating": 4.2,
+    "reviews": 92,
+    "tags": ["primer", "pestañas", "base"],
+    "featured": false
+  },
+  {
+    "id": 13,
+    "name": "Base Líquida Natural Skin",
+    "price": 58000,
+    "description": "Base líquida de cobertura media a alta con acabado natural skin. Fórmula ligera que se funde con la piel. Disponible en 10 tonos inclusivos.",
+    "images": [
+      "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&h=600&fit=crop"
+    ],
+    "category": "rostro",
+    "sizes": ["30ml", "50ml"],
+    "colors": ["Champagne", "Rosa Nude", "Marrón", "Negro Intenso"],
+    "inStock": true,
+    "rating": 4.7,
+    "reviews": 276,
+    "tags": ["base", "líquida", "natural", "cobertura"],
+    "featured": true
+  },
+  {
+    "id": 14,
+    "name": "Corrector Cover Pro",
+    "price": 27000,
+    "description": "Corrector de alta cobertura con acabado cremoso. Cubre ojeras, imperfecciones y manchas sin cuartearse. Fórmula con vitamina E.",
+    "images": [
+      "https://images.unsplash.com/photo-1599948128020-9a44505b0d1b?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=500&h=600&fit=crop"
+    ],
+    "category": "rostro",
+    "sizes": ["Full Size"],
+    "colors": ["Champagne", "Rosa Nude", "Marrón"],
+    "inStock": true,
+    "rating": 4.5,
+    "reviews": 198,
+    "tags": ["corrector", "cobertura", "ojeras"],
+    "featured": false
+  },
+  {
+    "id": 15,
+    "name": "Polvo Compacto Matte Finish",
+    "price": 33000,
+    "description": "Polvo compacto con acabado mate perfecto. Controla el brillo y fija el maquillaje durante todo el día. Textura sedosa y ligera.",
+    "images": [
+      "https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&h=600&fit=crop"
+    ],
+    "category": "rostro",
+    "sizes": ["Full Size"],
+    "colors": ["Champagne", "Rosa Nude"],
+    "inStock": true,
+    "rating": 4.4,
+    "reviews": 167,
+    "tags": ["polvo", "compacto", "mate"],
+    "featured": false
+  },
+  {
+    "id": 16,
+    "name": "Rubor Soft Blush",
+    "price": 29000,
+    "description": "Rubor en polvo con textura sedosa y pigmentación buildable. Da un toque natural y saludable a las mejillas.",
+    "images": [
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=500&h=600&fit=crop"
+    ],
+    "category": "rostro",
+    "sizes": ["Full Size"],
+    "colors": ["Rosa Nude", "Rose Gold"],
+    "inStock": true,
+    "rating": 4.3,
+    "reviews": 143,
+    "tags": ["rubor", "blush", "mejillas"],
+    "featured": false
+  },
+  {
+    "id": 17,
+    "name": "Iluminador Glow Light",
+    "price": 36000,
+    "description": "Iluminador en polvo con partículas de luz que dan un brillo sutil y elegante. Perfecto para pómulos, arco de cupido y nariz.",
+    "images": [
+      "https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1583241800698-e8ab01830a07?w=500&h=600&fit=crop"
+    ],
+    "category": "rostro",
+    "sizes": ["Full Size"],
+    "colors": ["Champagne", "Rose Gold"],
+    "inStock": true,
+    "rating": 4.6,
+    "reviews": 221,
+    "tags": ["iluminador", "glow", "brillo"],
+    "featured": true
+  },
+  {
+    "id": 18,
+    "name": "Contorno Sculpt Face",
+    "price": 39000,
+    "description": "Contorno en crema para esculpir y definir los rasgos faciales. Fórmula fácil de difuminar con acabado natural.",
+    "images": [
+      "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1599948128020-9a44505b0d1b?w=500&h=600&fit=crop"
+    ],
+    "category": "rostro",
+    "sizes": ["Full Size"],
+    "colors": ["Champagne", "Marrón"],
+    "inStock": true,
+    "rating": 4.5,
+    "reviews": 176,
+    "tags": ["contorno", "sculpt", "definición"],
+    "featured": false
+  },
+  {
+    "id": 19,
+    "name": "Spray Fijador Makeup Fix",
+    "price": 24000,
+    "originalPrice": 32000,
+    "description": "Spray fijador de maquillaje de larga duración. Sella el maquillaje hasta 16 horas. Fórmula refrescante con micropartículas hidratantes.",
+    "images": [
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=500&h=600&fit=crop"
+    ],
+    "category": "rostro",
+    "sizes": ["60ml", "120ml"],
+    "colors": ["Blanco Perla"],
+    "inStock": true,
+    "rating": 4.4,
+    "reviews": 154,
+    "tags": ["spray", "fijador", "larga duración"],
+    "featured": true
+  },
+  {
+    "id": 20,
+    "name": "Primer Hidratante Glow Base",
+    "price": 45000,
+    "description": "Primer hidratante con efecto glow que prepara la piel para el maquillaje. Formulado con ácido hialurónico para una hidratación profunda.",
+    "images": [
+      "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1570194065650-d99fb4b38b17?w=500&h=600&fit=crop"
+    ],
+    "category": "skincare",
+    "sizes": ["30ml", "50ml"],
+    "colors": ["Blanco Perla"],
+    "inStock": true,
+    "rating": 4.7,
+    "reviews": 234,
+    "tags": ["primer", "hidratante", "ácido hialurónico"],
+    "featured": true
+  },
+  {
+    "id": 21,
+    "name": "Crema Facial Prep & Smooth",
+    "price": 52000,
+    "description": "Crema facial preparadora que suaviza y unifica la textura de la piel. Aroma relajante a aloe vera. Ideal como paso previo al maquillaje.",
+    "images": [
+      "https://images.unsplash.com/photo-1570194065650-d99fb4b38b17?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=500&h=600&fit=crop"
+    ],
+    "category": "skincare",
+    "sizes": ["50ml"],
+    "colors": ["Blanco Perla"],
+    "inStock": true,
+    "rating": 4.6,
+    "reviews": 189,
+    "tags": ["crema", "facial", "preparadora"],
+    "featured": false
+  },
+  {
+    "id": 22,
+    "name": "Serum Iluminador Vitamina C",
+    "price": 51000,
+    "originalPrice": 60000,
+    "description": "Serum facial con vitamina C pura al 15% que ilumina, unifica el tono y combate los signos de la edad. Textura ligera de rápida absorción.",
+    "images": [
+      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=500&h=600&fit=crop"
+    ],
+    "category": "skincare",
+    "sizes": ["30ml"],
+    "colors": ["Blanco Perla"],
+    "inStock": true,
+    "rating": 4.8,
+    "reviews": 298,
+    "tags": ["serum", "vitamina C", "iluminador"],
+    "featured": true
+  },
+  {
+    "id": 23,
+    "name": "Protector Solar Facial SPF 50",
+    "price": 48000,
+    "description": "Protector solar facial de amplio espectro con SPF 50. Acabado invisible que no deja residuo blanco. Ideal bajo el maquillaje.",
+    "images": [
+      "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1570194065650-d99fb4b38b17?w=500&h=600&fit=crop"
+    ],
+    "category": "skincare",
+    "sizes": ["50ml"],
+    "colors": ["Blanco Perla"],
+    "inStock": true,
+    "rating": 4.7,
+    "reviews": 256,
+    "tags": ["protector solar", "SPF 50", "facial"],
+    "featured": false
+  },
+  {
+    "id": 24,
+    "name": "Agua Micelar Clean Skin",
+    "price": 26000,
+    "description": "Agua micelar suave que limpia, desmaquilla e hidrata en un solo paso. Aroma delicado a manzanilla. Apta para todo tipo de piel.",
+    "images": [
+      "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=500&h=600&fit=crop"
+    ],
+    "category": "skincare",
+    "sizes": ["200ml", "400ml"],
+    "colors": ["Blanco Perla"],
+    "inStock": true,
+    "rating": 4.5,
+    "reviews": 167,
+    "tags": ["agua micelar", "limpieza", "desmaquillante"],
+    "featured": false
+  },
+  {
+    "id": 25,
+    "name": "Set de Brochas Profesional x10",
+    "price": 68000,
+    "originalPrice": 85000,
+    "description": "Set profesional de 10 brochas de maquillaje con cerdas sintéticas ultra suaves. Incluye estuche de viaje. Para rostro, ojos y labios.",
+    "images": [
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&h=600&fit=crop"
+    ],
+    "category": "accesorios",
+    "sizes": ["Set x10"],
+    "colors": ["Rosa Nude", "Negro Intenso"],
+    "inStock": true,
+    "rating": 4.8,
+    "reviews": 342,
+    "tags": ["brochas", "set", "profesional"],
+    "featured": true
+  },
+  {
+    "id": 26,
+    "name": "Esponja Blender Soft",
+    "price": 15000,
+    "description": "Esponja de maquillaje de microfibra ultra suave. Perfecta para aplicar y difuminar base, corrector e iluminador sin dejar marcas.",
+    "images": [
+      "https://images.unsplash.com/photo-1599948128020-9a44505b0d1b?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&h=600&fit=crop"
+    ],
+    "category": "accesorios",
+    "sizes": ["Individual", "Pack x3"],
+    "colors": ["Rosa Nude", "Negro Intenso"],
+    "inStock": true,
+    "rating": 4.4,
+    "reviews": 213,
+    "tags": ["esponja", "blender", "aplicación"],
+    "featured": false
+  },
+  {
+    "id": 27,
+    "name": "Rizador de Pestañas Pro Curl",
+    "price": 18000,
+    "description": "Rizador de pestañas ergonómico con almohadilla de silicona que riza sin quebrar. Diseño profesional que se adapta a la curvatura del ojo.",
+    "images": [
+      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&h=600&fit=crop"
+    ],
+    "category": "accesorios",
+    "sizes": ["Estándar"],
+    "colors": ["Rose Gold"],
+    "inStock": true,
+    "rating": 4.3,
+    "reviews": 98,
+    "tags": ["rizador", "pestañas", "herramienta"],
+    "featured": false
+  },
+  {
+    "id": 28,
+    "name": "Organizador de Maquillaje",
+    "price": 55000,
+    "description": "Organizador acrílico transparente con múltiples compartimentos para brochas, labiales, paletas y más. Mantén tu espacio ordenado y elegante.",
+    "images": [
+      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&h=600&fit=crop"
+    ],
+    "category": "accesorios",
+    "sizes": ["Mediano", "Grande"],
+    "colors": ["Blanco Perla"],
+    "inStock": true,
+    "rating": 4.6,
+    "reviews": 176,
+    "tags": ["organizador", "almacenamiento", "acrílico"],
+    "featured": false
+  },
+  {
+    "id": 29,
+    "name": "Limpiador de Brochas Automático",
+    "price": 70000,
+    "description": "Limpiador eléctrico de brochas que limpia y seca en segundos. Incluye 8 adaptadores de silicona para diferentes tamaños de brochas.",
+    "images": [
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&h=600&fit=crop"
+    ],
+    "category": "accesorios",
+    "sizes": ["Estándar"],
+    "colors": ["Blanco Perla", "Rosa Nude"],
+    "inStock": true,
+    "rating": 4.7,
+    "reviews": 134,
+    "tags": ["limpiador", "brochas", "eléctrico"],
+    "featured": true
+  },
+  {
+    "id": 30,
+    "name": "Espejo LED Maquillaje",
+    "price": 95000,
+    "description": "Espejo de maquillaje con luz LED ajustable en 3 tonalidades. Aumento x5 y x10. Base giratoria 360° y carga USB. Tu estudio de belleza en casa.",
+    "images": [
+      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&h=600&fit=crop"
+    ],
+    "category": "accesorios",
+    "sizes": ["Estándar"],
+    "colors": ["Blanco Perla", "Rose Gold"],
+    "inStock": true,
+    "rating": 4.9,
+    "reviews": 287,
+    "tags": ["espejo", "LED", "luz ajustable"],
+    "featured": true
+  }
+]
