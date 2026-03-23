@@ -23,7 +23,7 @@ export const CartSidebar: React.FC = () => {
     <div className="fixed inset-0 z-50 flex">
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+        className="fixed inset-0 bg-black/40"
         onClick={() => setIsCartOpen(false)}
       />
       
