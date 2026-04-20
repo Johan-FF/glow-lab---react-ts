@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, LayoutGrid, ShoppingBag } from 'lucide-react';
+import { Search, LayoutGrid, ShoppingBag, Heart, Eye, Sparkles, Droplet, Brush, type LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link, useNavigate } from 'react-router-dom';
@@ -13,12 +13,12 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 
-const categories = [
-  { key: 'labios', emoji: '💋', label: 'Labios' },
-  { key: 'ojos', emoji: '👁️', label: 'Ojos' },
-  { key: 'rostro', emoji: '🌸', label: 'Rostro' },
-  { key: 'skincare', emoji: '💧', label: 'Skincare' },
-  { key: 'accesorios', emoji: '🖌️', label: 'Accesorios' },
+const categories: { key: string; Icon: LucideIcon; label: string }[] = [
+  { key: 'labios', Icon: Heart, label: 'Labios' },
+  { key: 'ojos', Icon: Eye, label: 'Ojos' },
+  { key: 'rostro', Icon: Sparkles, label: 'Rostro' },
+  { key: 'skincare', Icon: Droplet, label: 'Skincare' },
+  { key: 'accesorios', Icon: Brush, label: 'Accesorios' },
 ];
 
 export const SubHeader: React.FC = () => {
@@ -51,14 +51,16 @@ export const SubHeader: React.FC = () => {
                 <SheetTitle>Categorías</SheetTitle>
               </SheetHeader>
               <nav className="mt-6 flex flex-col gap-1">
-                {categories.map(({ key, emoji, label }) => (
+                {categories.map(({ key, Icon, label }) => (
                   <Link
                     key={key}
                     to={`/products?category=${key}`}
                     onClick={() => setSheetOpen(false)}
-                    className="flex items-center gap-3 rounded-lg px-3 py-3 text-foreground hover:bg-muted transition-colors"
+                    className="group flex items-center gap-3 rounded-lg px-3 py-3 text-foreground hover:bg-primary/10 transition-colors"
                   >
-                    <span className="text-xl">{emoji}</span>
+                    <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <Icon className="h-4 w-4" strokeWidth={1.75} />
+                    </span>
                     <span className="font-medium">{label}</span>
                   </Link>
                 ))}
