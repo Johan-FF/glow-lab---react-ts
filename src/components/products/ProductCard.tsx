@@ -3,6 +3,7 @@ import { Heart, Star, ShoppingCart, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useCart } from '@/contexts/CartContext';
+import { useFavorites } from '@/contexts/FavoritesContext';
 import { Link } from 'react-router-dom';
 import { formatPrice } from '@/lib/formatPrice';
 
@@ -26,8 +27,9 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
   const { addToCart } = useCart();
+  const { isFavorite: checkIsFavorite, toggleFavorite } = useFavorites();
+  const isFavorite = checkIsFavorite(product.id);
 
   const discountPercentage = product.originalPrice 
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
@@ -47,10 +49,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     });
   };
 
-  const toggleFavorite = (e: React.MouseEvent) => {
+  const handleToggleFavorite = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsFavorite(!isFavorite);
+    toggleFavorite({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.images[0],
+      sizes: product.sizes,
+      colors: product.colors,
+    });
   };
 
   return (
@@ -106,9 +115,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               variant="secondary"
               size="icon"
               className={`h-8 w-8 transition-all duration-300 ${
-                isHovered ? 'translate-x-0 opacity-100' : 'translate-x-2 opacity-0'
+                isHovered || isFavorite ? 'translate-x-0 opacity-100' : 'translate-x-2 opacity-0'
               }`}
-              onClick={toggleFavorite}
+              onClick={handleToggleFavorite}
+              aria-label={isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos'}
             >
               <Heart 
                 className={`h-4 w-4 transition-colors ${

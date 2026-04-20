@@ -1,16 +1,18 @@
 import React from 'react';
-import { User, Moon, Sun, Menu, ShoppingBag } from 'lucide-react';
+import { User, Moon, Sun, Menu, ShoppingBag, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { useCart } from '@/contexts/CartContext';
+import { useFavorites } from '@/contexts/FavoritesContext';
 import { Link } from 'react-router-dom';
 
 export const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const { user, logout } = useAuth();
   const { getTotalItems } = useCart();
+  const { getTotalFavorites, setIsFavoritesOpen } = useFavorites();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-primary/15 bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10 backdrop-blur supports-[backdrop-filter]:bg-primary/5">
@@ -38,6 +40,26 @@ export const Header: React.FC = () => {
                 <Sun className="h-4 w-4" />
               )}
             </Button>
+
+            <div className="relative">
+              <Button
+                variant="outline"
+                size="icon"
+                className="h-9 w-9"
+                onClick={() => setIsFavoritesOpen(true)}
+                aria-label="Abrir favoritos"
+              >
+                <Heart className="h-4 w-4" />
+              </Button>
+              {getTotalFavorites() > 0 && (
+                <Badge
+                  variant="destructive"
+                  className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs pointer-events-none"
+                >
+                  {getTotalFavorites()}
+                </Badge>
+              )}
+            </div>
 
             <Link to="/cart" className="relative">
               <Button variant="outline" size="icon" className="h-9 w-9">

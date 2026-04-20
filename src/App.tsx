@@ -6,9 +6,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
+import { FavoritesProvider } from "@/contexts/FavoritesContext";
 import { Header } from "@/components/layout/Header";
 import { SubHeader } from "@/components/layout/SubHeader";
 import { CartSidebar } from "@/components/cart/CartSidebar";
+import { FavoritesSidebar } from "@/components/favorites/FavoritesSidebar";
 import { Home } from "./pages/Home";
 import { Auth } from "./pages/Auth";
 import { Products } from "./pages/Products";
@@ -26,6 +28,7 @@ const App = () => (
     <ThemeProvider>
       <AuthProvider>
         <CartProvider>
+          <FavoritesProvider>
           <TooltipProvider>
             <Toaster />
             <Sonner />
@@ -48,9 +51,11 @@ const App = () => (
                   </Routes>
                 </main>
                 <CartSidebar />
+                <FavoritesSidebar />
               </div>
             </BrowserRouter>
           </TooltipProvider>
+          </FavoritesProvider>
         </CartProvider>
       </AuthProvider>
     </ThemeProvider>
