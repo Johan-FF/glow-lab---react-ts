@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, LayoutGrid, ShoppingBag, Heart, Eye, Sparkles, Droplet, Brush } from 'lucide-react';
+import { Search, LayoutGrid, ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link, useNavigate } from 'react-router-dom';
@@ -14,11 +14,11 @@ import {
 } from '@/components/ui/sheet';
 
 const categories = [
-  { key: 'labios', Icon: Heart, label: 'Labios' },
-  { key: 'ojos', Icon: Eye, label: 'Ojos' },
-  { key: 'rostro', Icon: Sparkles, label: 'Rostro' },
-  { key: 'skincare', Icon: Droplet, label: 'Skincare' },
-  { key: 'accesorios', Icon: Brush, label: 'Accesorios' },
+  { key: 'labios', emoji: '💋', label: 'Labios' },
+  { key: 'ojos', emoji: '👁️', label: 'Ojos' },
+  { key: 'rostro', emoji: '🌸', label: 'Rostro' },
+  { key: 'skincare', emoji: '💧', label: 'Skincare' },
+  { key: 'accesorios', emoji: '🖌️', label: 'Accesorios' },
 ];
 
 export const SubHeader: React.FC = () => {
@@ -51,17 +51,15 @@ export const SubHeader: React.FC = () => {
                 <SheetTitle>Categorías</SheetTitle>
               </SheetHeader>
               <nav className="mt-6 flex flex-col gap-1">
-                {categories.map(({ key, Icon, label }) => (
+                {categories.map(({ key, emoji, label }) => (
                   <Link
                     key={key}
                     to={`/products?category=${key}`}
                     onClick={() => setSheetOpen(false)}
-                    className="group flex items-center gap-3 rounded-lg px-3 py-3 text-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                    className="flex items-center gap-3 rounded-lg px-3 py-3 text-foreground hover:bg-muted transition-colors"
                   >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-md border border-primary/20 bg-primary/5 text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors">
-                      <Icon className="h-4 w-4" strokeWidth={1.5} />
-                    </span>
-                    <span className="font-medium tracking-wide">{label}</span>
+                    <span className="text-xl">{emoji}</span>
+                    <span className="font-medium">{label}</span>
                   </Link>
                 ))}
               </nav>

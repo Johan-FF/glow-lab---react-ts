@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Star, Truck, Shield, Headphones, Heart, Eye, Sparkles, Droplet, Brush } from 'lucide-react';
+import { ArrowRight, Star, Truck, Shield, Headphones } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ProductCard } from '@/components/products/ProductCard';
@@ -100,21 +100,19 @@ export const Home: React.FC = () => {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {[
-              { cat: 'labios', Icon: Heart, label: 'Labios' },
-              { cat: 'ojos', Icon: Eye, label: 'Ojos' },
-              { cat: 'rostro', Icon: Sparkles, label: 'Rostro' },
-              { cat: 'skincare', Icon: Droplet, label: 'Skincare' },
-              { cat: 'accesorios', Icon: Brush, label: 'Accesorios' },
-            ].map(({ cat, Icon, label }) => (
+              { cat: 'labios', emoji: '💋', label: 'Labios' },
+              { cat: 'ojos', emoji: '👁️', label: 'Ojos' },
+              { cat: 'rostro', emoji: '🌸', label: 'Rostro' },
+              { cat: 'skincare', emoji: '💧', label: 'Skincare' },
+              { cat: 'accesorios', emoji: '🖌️', label: 'Accesorios' },
+            ].map(({ cat, emoji, label }) => (
               <Link
                 key={cat}
                 to={`/products?category=${cat}`}
                 className="group flex flex-col items-center p-6 rounded-2xl bg-card border border-primary/20 hover:border-primary hover:shadow-medium transition-all duration-300 hover:bg-primary/5"
               >
-                <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20 mb-3 group-hover:scale-110 group-hover:border-primary group-hover:from-primary/20 group-hover:to-accent/20 transition-all">
-                  <Icon className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                </span>
-                <span className="font-semibold text-foreground tracking-wide">{label}</span>
+                <span className="text-4xl mb-3 group-hover:scale-110 transition-transform">{emoji}</span>
+                <span className="font-semibold text-foreground">{label}</span>
                 <span className="text-xs text-muted-foreground mt-1">
                   {productsData.filter(p => p.category === cat).length} productos
                 </span>
