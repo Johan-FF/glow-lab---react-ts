@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Filter, Grid, List, SlidersHorizontal } from 'lucide-react';
+import { Filter, Grid, List, SlidersHorizontal, Sparkles, Heart, Eye, Droplet, Brush, type LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -9,13 +9,13 @@ import { Separator } from '@/components/ui/separator';
 import { ProductCard } from '@/components/products/ProductCard';
 import products from '@/data/products.json';
 
-const categoryConfig: Record<string, { label: string; icon: string; emoji: string }> = {
-  all: { label: 'Todos', icon: 'sparkles', emoji: '✨' },
-  labios: { label: 'Labios', icon: 'lips', emoji: '💋' },
-  ojos: { label: 'Ojos', icon: 'eye', emoji: '👁️' },
-  rostro: { label: 'Rostro', icon: 'sparkles', emoji: '🌸' },
-  skincare: { label: 'Skincare', icon: 'droplets', emoji: '💧' },
-  accesorios: { label: 'Accesorios', icon: 'brush', emoji: '🖌️' },
+const categoryConfig: Record<string, { label: string; Icon: LucideIcon }> = {
+  all: { label: 'Todos', Icon: Sparkles },
+  labios: { label: 'Labios', Icon: Heart },
+  ojos: { label: 'Ojos', Icon: Eye },
+  rostro: { label: 'Rostro', Icon: Sparkles },
+  skincare: { label: 'Skincare', Icon: Droplet },
+  accesorios: { label: 'Accesorios', Icon: Brush },
 };
 
 export const Products: React.FC = () => {
