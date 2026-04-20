@@ -28,7 +28,7 @@ export const Cart: React.FC = () => {
           <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
             <ShoppingBag className="h-12 w-12 text-primary/50" />
           </div>
-          <h1 className="text-2xl font-bold mb-4">Tu carrito está vacío</h1>
+          <h1 className="text-2xl font-bold mb-4">Tu bolsa está vacía</h1>
           <p className="text-muted-foreground mb-8">
             Parece que no has agregado ningún producto a tu carrito todavía.
           </p>
