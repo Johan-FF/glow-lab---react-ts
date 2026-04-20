@@ -49,7 +49,7 @@ export const CartSidebar: React.FC = () => {
                 <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
                   <Trash2 className="h-8 w-8 text-muted-foreground" />
                 </div>
-                <h3 className="text-lg font-medium mb-2">Tu carrito está vacío</h3>
+                <h3 className="text-lg font-medium mb-2">Tu bolsa está vacía</h3>
                 <p className="text-muted-foreground mb-4">
                   Agrega algunos productos para comenzar
                 </p>
