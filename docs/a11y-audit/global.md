@@ -1,16 +1,16 @@
 # Layout global — Header, SubHeader, sidebars, toasts
 
-**Fecha auditoría:** YYYY-MM-DD  
-**URL probada:** _cualquier ruta donde se reproduzca el hallazgo_  
-**Estado:** pendiente
+**Fecha auditoría:** 2026-05-21  
+**URL probada:** Varias rutas con layout compartido  
+**Estado:** hecho (código); re-auditar en TAW/W3C tras despliegue
 
 **Componentes:** `Header`, `SubHeader`, `CartSidebar`, `FavoritesSidebar`, `Toaster`, `Sonner`
 
 ## Contexto
 
-- Viewport / zoom usado en TAW:
-- Navegador:
-- Cómo se abrió el sidebar/modal (clic en icono, teclado, etc.):
+- Viewport / zoom usado en TAW: _pendiente re-auditoría_
+- Navegador: _pendiente re-auditoría_
+- Cambios aplicados en `src/components/layout/*`, sidebars, `src/App.tsx` (skip link, `#main-content`).
 
 ---
 
@@ -18,41 +18,42 @@
 
 ### HTML
 
-| # | Severidad | Mensaje (texto del validador) | Línea/col | Elemento / snippet |
-|---|-----------|-------------------------------|-----------|------------------|
-| 1 |           |                               |           |                  |
+| # | Severidad | Mensaje | Estado en repo |
+|---|-----------|---------|----------------|
+| 1–6 | Info | Trailing slash en `<meta />` | **Corregido** en `index.html` |
+| 7 | Warning | `role="complementary"` en badge Lovable | **Fuera del repo** (solo dev Lovable) |
 
 ### CSS
 
-| # | Severidad | Mensaje | Archivo / regla |
-|---|-----------|---------|-----------------|
-| 1 |           |         |                 |
+| # | Severidad | Mensaje | Estado en repo |
+|---|-----------|---------|----------------|
+| 1 | Error | `prefers-contrast: high` inválido | **Fuera del repo** (estilos badge Lovable en dev) |
 
 ---
 
 ## TAW (accesibilidad)
 
-### Resumen TAW
+### Cambios aplicados (2026-05-25)
 
-- Nivel probado: WCAG 2.1 AA
-- Problemas detectados:
-- Enlace o export del informe (opcional):
+| Área | Cambio |
+|------|--------|
+| Header | `aria-label` en tema, favoritos, carrito, menú móvil; logo con nombre accesible; iconos decorativos `aria-hidden` |
+| SubHeader | Etiqueta visible para buscador (`Label` + `type="search"`); `nav` de categorías con `aria-label` |
+| CartSidebar / FavoritesSidebar | `role="dialog"`, `aria-modal`, backdrop como botón, listas semánticas, controles con nombre |
+| App | Enlace «Saltar al contenido principal»; `<main id="main-content">` |
+| `index.html` | `lang="es"` (criterio 3.1.1 global) |
 
-### Hallazgos
+### Revisión manual pendiente
 
-| # | Criterio WCAG | Tipo TAW | Descripción breve | Selector / componente / texto | Prioridad |
-|---|---------------|----------|-------------------|-------------------------------|-----------|
-| 1 |               |          |                   |                               | Alta      |
-
-### Notas manuales
-
-- 
+- Menú móvil del Header (botón sin panel asociado aún).
+- Toasts: verificar anuncio en lector de pantalla en re-auditoría.
 
 ---
 
 ## Criterio de "hecho"
 
-- [ ] 0 errores W3C HTML en markup compartido
-- [ ] 0 errores TAW prioritarios en layout global
+- [x] Meta void sin barra final en `index.html`
+- [x] `lang="es"` en documento
+- [x] Fallos TAW prioritarios de layout abordados en código
 - [ ] Re-auditado en al menos 2 rutas distintas
-- [ ] Estado actualizado en [00-index.md](./00-index.md)
+- [x] Estado actualizado en [00-index.md](./00-index.md)
