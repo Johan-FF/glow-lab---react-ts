@@ -11,7 +11,7 @@
 | `/` | [home.md](./home.md) | 1 error, 1 warning, 6 info | 8 fallos documentados | pendiente |
 | `/auth` | [auth.md](./auth.md) | 1 error, 1 warning | 9 fallos documentados | pendiente |
 | `/products` | [products.md](./products.md) | 1 error, 1 warning | 8 fallos documentados | pendiente |
-| `/product/:id` | [product-detail.md](./product-detail.md) | pendiente | 8 fallos documentados | pendiente |
+| `/product/:id` | [product-detail.md](./product-detail.md) | 1 error, 1 warning | 8 fallos documentados | pendiente |
 | `/product/:id/reviews` | [product-reviews.md](./product-reviews.md) | pendiente | 10 fallos documentados | pendiente |
 | `/cart` | [cart.md](./cart.md) | pendiente | 8 fallos documentados | pendiente |
 | `/checkout` | [checkout.md](./checkout.md) | pendiente | 8 fallos documentados | pendiente |
