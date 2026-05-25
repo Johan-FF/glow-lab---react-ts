@@ -18,17 +18,21 @@
 ## W3C (validator.w3.org)
 
 **Fuente:** validator.w3.org sobre documento servido en `http://localhost:8080/product/:id` (2026-05-21).  
-**Resumen:** 1 error CSS · 1 warning HTML · 0 info HTML en este informe.
-
-**Nota:** Los avisos de `<meta … />` en `index.html` documentados en [home.md](./home.md) aplican a todas las rutas; en esta validación el validador solo reportó el badge Lovable.
+**Resumen:** 1 error CSS · 1 warning HTML · 6 info HTML.
 
 ### HTML
 
 | # | ID validador | Severidad | Mensaje (texto del validador) | Línea/col | Elemento / snippet |
 |---|--------------|-----------|-------------------------------|-----------|-------------------|
-| 1 | vnuId1 | Warning | The `complementary` role is unnecessary for element `aside`. | 207:1–212:32 | `<aside id="lovable-badge" role="complementary" …>` |
+| 1 | vnuId2 | Info | Trailing slash on void elements has no effect (and interacts badly with unquoted attribute values). | 4:5–4:28 | `<meta charset="UTF-8" />` |
+| 2 | vnuId3 | Info | Idem | 5:5–5:76 | `<meta name="viewport" content="width=device-width, initial-scale=1.0" />` |
+| 3 | vnuId4 | Info | Idem | 8:5–8:44 | `<meta name="author" content="GlowLab" />` |
+| 4 | vnuId5 | Info | Idem | 12:5–12:49 | `<meta property="og:type" content="website" />` |
+| 5 | vnuId6 | Info | Idem | 15:5–15:62 | `<meta name="twitter:card" content="summary_large_image" />` |
+| 6 | vnuId7 | Info | Idem | 16:5–16:55 | `<meta name="twitter:site" content="@lovable_dev" />` |
+| 7 | vnuId1 | Warning | The `complementary` role is unnecessary for element `aside`. | 207:1–212:32 | `<aside id="lovable-badge" role="complementary" …>` |
 
-**Origen probable:** badge «Edit with Lovable» inyectado en dev (no está en el repo fuente).
+**Origen probable:** filas 1–6 → `index.html` (plantilla Vite). Fila 7 → badge «Edit with Lovable» inyectado en dev (no está en el repo fuente).
 
 ### CSS
 
@@ -42,7 +46,7 @@
 |-----------|--------|-----------------|
 | Alta | Sustituir `prefers-contrast: high` por `more` / `less` o eliminar la regla | Estilos inyectados en dev; verificar en build de producción |
 | Media | Quitar `role="complementary"` del `<aside>` del badge | Solo entorno Lovable/dev |
-| Baja | Corregir `<meta … />` en plantilla si se revalida con informe completo | Ver [home.md](./home.md) — `index.html` |
+| Baja | Quitar `/` final en `<meta … />` → `<meta …>` (HTML5) | `index.html` líneas 4, 5, 8, 12, 15, 16 y resto de `<meta />` con barra |
 
 ---
 
