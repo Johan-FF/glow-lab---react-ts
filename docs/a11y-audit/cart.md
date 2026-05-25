@@ -1,17 +1,17 @@
 # Cart — `/cart`
 
-**Fecha auditoría:** YYYY-MM-DD  
+**Fecha auditoría:** 2026-05-21  
 **URL probada:** http://localhost:8080/cart  
-**Estado:** pendiente
+**Estado:** pendiente (TAW documentado; faltan detalle de incidencias y W3C)
 
-**Código:** `src/pages/Cart.tsx`
+**Código:** `src/pages/Cart.tsx` (+ posible solapamiento con `CartSidebar`)
 
 ## Contexto
 
-- Viewport / zoom usado en TAW:
-- Navegador:
-- Carrito vacío o con productos (cuántos):
-- Notas:
+- Viewport / zoom usado en TAW: _rellenar_
+- Navegador: _rellenar_
+- Carrito vacío o con productos (cuántos): _rellenar_
+- Notas: Informe TAW = resumen por criterio WCAG 2.0 AA. Auditar también con **carrito vacío** y **con ítems** si los resultados difieren.
 
 ---
 
@@ -21,13 +21,13 @@
 
 | # | Severidad | Mensaje (texto del validador) | Línea/col | Elemento / snippet |
 |---|-----------|-------------------------------|-----------|------------------|
-| 1 |           |                               |           |                  |
+| — | — | _Pendiente de auditoría W3C_ | — | — |
 
 ### CSS
 
 | # | Severidad | Mensaje | Archivo / regla |
 |---|-----------|---------|-----------------|
-| 1 |           |         |                 |
+| — | — | _Pendiente_ | — |
 
 ---
 
@@ -35,25 +35,73 @@
 
 ### Resumen TAW
 
-- Nivel probado: WCAG 2.1 AA
-- Problemas detectados:
-- Enlace o export del informe (opcional):
+- Nivel probado: WCAG 2.0 — nivel AA (informe TAW)
+- **Problemas (fallos):** 8 incidencias en 7 criterios
+- **Advertencias:** 14 (suma por criterio en informe)
+- **No verificados / sin revisar / desconocido:** varios criterios requieren revisión manual (ver tabla inferior)
+- Fuente: informe resumen TAW página `/cart` (2026-05-21)
 
-### Hallazgos
+### Fallos — corregir con prioridad Alta
 
-| # | Criterio WCAG | Tipo TAW | Descripción breve | Selector / componente / texto | Prioridad |
-|---|---------------|----------|-------------------|-------------------------------|-----------|
-| 1 |               |          |                   |                               | Alta      |
+| # | Criterio WCAG | Tipo TAW | Problemas | Advertencias | Descripción (criterio) | Componente probable | Prioridad |
+|---|---------------|----------|-----------|--------------|------------------------|---------------------|-----------|
+| 1 | 1.1.1 | Falla | 1 | 0 | Contenido no textual sin alternativa adecuada | Imágenes de línea, iconos +/-, eliminar, vacío | Alta |
+| 2 | 1.3.1 | Falla | 2 | 0 | Información y relaciones no determinables programáticamente | Tabla/lista ítems, totales, cantidades | Alta |
+| 3 | 2.4.4 | Falla | 1 | 0 | Propósito del enlace no deducible del texto o contexto | “Seguir comprando”, checkout, quitar ítem | Alta |
+| 4 | 3.1.1 | Falla | 1 | 0 | Idioma de la página no declarado programáticamente | `<html lang>` en `index.html` (global) | Alta |
+| 5 | 3.2.2 | Falla | 1 | 0 | Cambio de contexto al introducir datos sin aviso | Cambio cantidad que navega o actualiza sin aviso | Alta |
+| 6 | 3.3.2 | Falla | 1 | 0 | Falta de etiquetas o instrucciones en controles | Inputs cantidad, cupón, controles del carrito | Alta |
+| 7 | 4.1.2 | Falla | 1 | 0 | Nombre, función o valor no expuestos a AT | Botones cantidad, eliminar, steppers custom | Alta |
+
+_Detalle por incidencia (selector, HTML concreto): pegar desde TAW al expandir cada criterio._
+
+### Advertencias — prioridad Media (revisar y corregir si aplica)
+
+| # | Criterio WCAG | Tipo TAW | Advertencias | Descripción (criterio) | Notas |
+|---|---------------|----------|--------------|------------------------|-------|
+| 8 | 1.4.4 | Desconocido | 2 | Redimensionamiento del texto al 200% | Tabla carrito / resumen con zoom 200% |
+| 9 | 2.4.2 | Desconocido | 1 | Título de página descriptivo | `<title>` — “Carrito” |
+| 10 | 2.4.6 | Desconocido | 1 | Encabezados y etiquetas describen propósito | h1 carrito, labels cantidad/cupón |
+| 11 | 2.4.7 | Desconocido | 4 | Foco visible en UI operable por teclado | +/- cantidad, CTA checkout |
+| 12 | 3.3.1 | Desconocido | 2 | Identificación de errores en formularios | Cupón inválido, cantidad mín/máx |
+| 13 | 3.3.3 | Desconocido | 1 | Sugerencias ante errores | Mensajes al fallar cupón |
+| 14 | 3.3.4 | Desconocido | 3 | Prevención de errores antes de checkout | Confirmación / revisión pedido |
+
+### Sin revisar / no verificados en TAW (revisión manual)
+
+| Criterio | Estado en informe | Notas |
+|----------|-------------------|-------|
+| 1.3.3 | Sin revisar (1) | Características sensoriales |
+| 1.4.1, 1.4.3, 1.4.5 | Sin revisar | Color, contraste, imágenes de texto |
+| 2.1.1, 2.1.2 | Sin revisar | Teclado / sin bloqueo de foco |
+| 2.2.1, 2.2.2, 2.3.1 | Sin revisar | Tiempo / movimiento / destellos |
+| 2.4.1 | Sin revisar (1) | Evitar bloques — sin advertencia en informe |
+| 2.4.3, 2.4.5 | Sin revisar | Orden de foco / múltiples vías |
+| 3.1.2, 3.2.1, 3.2.3, 3.2.4 | Sin revisar | Idioma partes / foco / consistencia |
+| 3.2.2, 4.1.2 | No verificado (1) cada uno además del fallo | Completar prueba AT |
+
+### Resumen por principio WCAG
+
+| Principio | Problemas (incidencias) | Advertencias (suma) |
+|-----------|-------------------------|---------------------|
+| 1 Perceptible | 3 (1.1.1×1 + 1.3.1×2) | 2 |
+| 2 Operable | 1 (2.4.4) | 6 |
+| 3 Comprensible | 3 (3.1.1 + 3.2.2 + 3.3.2) | 6 |
+| 4 Robusto | 1 (4.1.2) | 0 |
 
 ### Notas manuales
 
-- 
+- **3.3.4 (3 advertencias)** y flujo hacia checkout: revisar confirmación antes de pagar.
+- Controles de **cantidad** y **eliminar** suelen concentrar fallos 3.2.2, 3.3.2 y 4.1.2.
+- Si TAW se ejecutó solo con carrito vacío o solo con ítems, documentar ambos estados y re-auditar el otro.
+- Comparar con [global.md](./global.md) si `CartSidebar` comparte los mismos patrones.
 
 ---
 
 ## Criterio de "hecho"
 
 - [ ] 0 errores W3C HTML
-- [ ] 0 errores TAW prioritarios
-- [ ] Re-auditada tras el fix
+- [ ] 0 fallos TAW en criterios 1.1.1, 1.3.1, 2.4.4, 3.1.1, 3.2.2, 3.3.2, 4.1.2
+- [ ] Advertencias 2.4.7 y 3.3.x revisadas
+- [ ] Re-auditada tras el fix (vacío y con ítems)
 - [ ] Estado actualizado en [00-index.md](./00-index.md)
