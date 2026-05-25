@@ -13,13 +13,16 @@ export const Home: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-hero text-primary-foreground overflow-hidden min-h-[80vh] flex items-center">
-        <div className="absolute inset-0 bg-black/30" />
-        <div 
+      <section
+        className="relative bg-gradient-hero text-primary-foreground overflow-hidden min-h-[80vh] flex items-center"
+        aria-labelledby="home-hero-heading"
+      >
+        <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
-          style={{
-            backgroundImage: `url(${heroImage})`
-          }}
+          style={{ backgroundImage: `url(${heroImage})` }}
+          role="img"
+          aria-label="Fondo decorativo con productos de maquillaje"
         />
         <div className="container mx-auto px-4 py-24 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -27,7 +30,7 @@ export const Home: React.FC = () => {
               Nueva Colección 2024
             </Badge>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+            <h1 id="home-hero-heading" className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
               Belleza que 
               <span className="block bg-gradient-accent bg-clip-text text-transparent">
                 Te Inspira
@@ -43,7 +46,7 @@ export const Home: React.FC = () => {
               <Link to="/products">
                 <Button size="lg" className="bg-accent hover:bg-accent-hover text-accent-foreground">
                   Explorar Colección
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
                 </Button>
               </Link>
               <Button variant="outline" size="lg" className="!border-white/40 !text-white !bg-transparent hover:!bg-white/10">
@@ -54,51 +57,54 @@ export const Home: React.FC = () => {
         </div>
         
         {/* Hero Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-10" aria-hidden="true">
           <div className="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full blur-3xl" />
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary-foreground rounded-full blur-3xl" />
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-16 bg-muted/30" aria-labelledby="home-features-heading">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center group">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+          <h2 id="home-features-heading" className="sr-only">
+            Ventajas de comprar en GlowLab
+          </h2>
+          <ul className="grid grid-cols-1 md:grid-cols-3 gap-8 list-none p-0 m-0">
+            <li className="text-center group">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform" aria-hidden="true">
                 <Truck className="h-8 w-8 text-accent-foreground" />
               </div>
               <h3 className="text-lg font-semibold mb-2">Envío Gratis</h3>
               <p className="text-muted-foreground">En pedidos superiores a $200.000. Entrega en 24-48h.</p>
-            </div>
+            </li>
             
-            <div className="text-center group">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+            <li className="text-center group">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform" aria-hidden="true">
                 <Shield className="h-8 w-8 text-accent-foreground" />
               </div>
               <h3 className="text-lg font-semibold mb-2">100% Original</h3>
               <p className="text-muted-foreground">Todos nuestros productos son auténticos y certificados.</p>
-            </div>
+            </li>
             
-            <div className="text-center group">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+            <li className="text-center group">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform" aria-hidden="true">
                 <Headphones className="h-8 w-8 text-accent-foreground" />
               </div>
               <h3 className="text-lg font-semibold mb-2">Asesoría Beauty</h3>
               <p className="text-muted-foreground">Consulta con nuestras expertas en belleza 24/7.</p>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </section>
 
       {/* Shop by Category */}
-      <section className="py-16 bg-secondary/50">
+      <section className="py-16 bg-secondary/50" aria-labelledby="home-categories-heading">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
             <Badge className="mb-4" variant="outline">Categorías</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Compra por Categoría</h2>
+            <h2 id="home-categories-heading" className="text-3xl md:text-4xl font-bold mb-4">Compra por Categoría</h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <ul className="grid grid-cols-2 md:grid-cols-5 gap-4 list-none p-0 m-0">
             {([
               { cat: 'labios', Icon: Heart, label: 'Labios' },
               { cat: 'ojos', Icon: Eye, label: 'Ojos' },
@@ -106,21 +112,23 @@ export const Home: React.FC = () => {
               { cat: 'skincare', Icon: Droplet, label: 'Skincare' },
               { cat: 'accesorios', Icon: Brush, label: 'Accesorios' },
             ] as { cat: string; Icon: LucideIcon; label: string }[]).map(({ cat, Icon, label }) => (
-              <Link
-                key={cat}
-                to={`/products?category=${cat}`}
-                className="group flex flex-col items-center p-6 rounded-2xl bg-card border border-primary/20 hover:border-primary hover:shadow-medium transition-all duration-300 hover:bg-primary/5"
-              >
-                <span className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-gradient-accent group-hover:text-accent-foreground group-hover:scale-110 transition-all duration-300">
-                  <Icon className="h-6 w-6" strokeWidth={1.5} />
-                </span>
-                <span className="font-semibold text-foreground">{label}</span>
-                <span className="text-xs text-muted-foreground mt-1">
-                  {productsData.filter(p => p.category === cat).length} productos
-                </span>
-              </Link>
+              <li key={cat}>
+                <Link
+                  to={`/products?category=${cat}`}
+                  className="group flex flex-col items-center p-6 rounded-2xl bg-card border border-primary/20 hover:border-primary hover:shadow-medium transition-all duration-300 hover:bg-primary/5"
+                  aria-label={`Ver productos de ${label}, ${productsData.filter(p => p.category === cat).length} disponibles`}
+                >
+                  <span className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-gradient-accent group-hover:text-accent-foreground group-hover:scale-110 transition-all duration-300" aria-hidden="true">
+                    <Icon className="h-6 w-6" strokeWidth={1.5} />
+                  </span>
+                  <span className="font-semibold text-foreground">{label}</span>
+                  <span className="text-xs text-muted-foreground mt-1">
+                    {productsData.filter(p => p.category === cat).length} productos
+                  </span>
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -175,7 +183,7 @@ export const Home: React.FC = () => {
             <div>
               <div className="text-4xl font-bold mb-2">4.9</div>
               <div className="text-primary-foreground/80 flex items-center justify-center gap-1">
-                <Star className="h-4 w-4 fill-current" />
+                <Star className="h-4 w-4 fill-current" aria-hidden="true" />
                 Valoración
               </div>
             </div>
