@@ -10,7 +10,7 @@
 |------|---------|----------|-----|--------|
 | `/` | [home.md](./home.md) | pendiente | 8 fallos documentados | pendiente |
 | `/auth` | [auth.md](./auth.md) | pendiente | 9 fallos documentados | pendiente |
-| `/products` | [products.md](./products.md) | pendiente | pendiente | pendiente |
+| `/products` | [products.md](./products.md) | pendiente | 8 fallos documentados | pendiente |
 | `/product/:id` | [product-detail.md](./product-detail.md) | pendiente | pendiente | pendiente |
 | `/product/:id/reviews` | [product-reviews.md](./product-reviews.md) | pendiente | pendiente | pendiente |
 | `/cart` | [cart.md](./cart.md) | pendiente | pendiente | pendiente |

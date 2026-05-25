@@ -1,17 +1,17 @@
 # Products — `/products`
 
-**Fecha auditoría:** YYYY-MM-DD  
+**Fecha auditoría:** 2026-05-21  
 **URL probada:** http://localhost:8080/products  
-**Estado:** pendiente
+**Estado:** pendiente (TAW documentado; faltan detalle de incidencias y W3C)
 
-**Código:** `src/pages/Products.tsx`
+**Código:** `src/pages/Products.tsx` (+ tarjetas de producto, filtros; layout global)
 
 ## Contexto
 
-- Viewport / zoom usado en TAW:
-- Navegador:
-- Filtros / búsqueda activos durante la prueba:
-- Notas:
+- Viewport / zoom usado en TAW: _rellenar_
+- Navegador: _rellenar_
+- Filtros / búsqueda activos durante la prueba: _rellenar_
+- Notas: Informe TAW = resumen por criterio WCAG 2.0 AA. **1.1.1 con 60 advertencias** sugiere muchas imágenes de producto sin `alt` adecuado. Ampliar cada fila con detalle desde TAW.
 
 ---
 
@@ -21,13 +21,13 @@
 
 | # | Severidad | Mensaje (texto del validador) | Línea/col | Elemento / snippet |
 |---|-----------|-------------------------------|-----------|------------------|
-| 1 |           |                               |           |                  |
+| — | — | _Pendiente de auditoría W3C_ | — | — |
 
 ### CSS
 
 | # | Severidad | Mensaje | Archivo / regla |
 |---|-----------|---------|-----------------|
-| 1 |           |         |                 |
+| — | — | _Pendiente_ | — |
 
 ---
 
@@ -35,25 +35,73 @@
 
 ### Resumen TAW
 
-- Nivel probado: WCAG 2.1 AA
-- Problemas detectados:
-- Enlace o export del informe (opcional):
+- Nivel probado: WCAG 2.0 — nivel AA (informe TAW)
+- **Problemas (fallos):** 8 incidencias en 7 criterios
+- **Advertencias:** 105 (suma por criterio en informe; **60 en 1.1.1**, **31 en 2.4.6**)
+- **No verificados / sin revisar / desconocido:** varios criterios requieren revisión manual (ver tabla inferior)
+- Fuente: informe resumen TAW página `/products` (2026-05-21)
 
-### Hallazgos
+### Fallos — corregir con prioridad Alta
 
-| # | Criterio WCAG | Tipo TAW | Descripción breve | Selector / componente / texto | Prioridad |
-|---|---------------|----------|-------------------|-------------------------------|-----------|
-| 1 |               |          |                   |                               | Alta      |
+| # | Criterio WCAG | Tipo TAW | Problemas | Advertencias | Descripción (criterio) | Componente probable | Prioridad |
+|---|---------------|----------|-----------|--------------|------------------------|---------------------|-----------|
+| 1 | 1.1.1 | Falla | 1 | 60 | Contenido no textual sin alternativa adecuada | Imágenes de producto en grid/listado, iconos favoritos/carrito | Alta |
+| 2 | 1.3.1 | Falla | 2 | 0 | Información y relaciones no determinables programáticamente | Grid de productos, filtros, ordenación, precios | Alta |
+| 3 | 2.4.4 | Falla | 1 | 0 | Propósito del enlace no deducible del texto o contexto | Tarjetas clicables, “ver detalle”, iconos sin texto | Alta |
+| 4 | 3.1.1 | Falla | 1 | 0 | Idioma de la página no declarado programáticamente | `<html lang>` en `index.html` (global) | Alta |
+| 5 | 3.2.2 | Falla | 1 | 0 | Cambio de contexto al introducir datos sin aviso | Búsqueda/filtros que recargan o navegan al cambiar | Alta |
+| 6 | 3.3.2 | Falla | 1 | 0 | Falta de etiquetas o instrucciones en controles | Buscador, selects de filtro/orden | Alta |
+| 7 | 4.1.2 | Falla | 1 | 0 | Nombre, función o valor no expuestos a AT | Botones icono, filtros custom, paginación | Alta |
+
+_Detalle por incidencia (selector, HTML concreto): pegar desde TAW al expandir cada criterio._
+
+### Advertencias — prioridad Media (revisar y corregir si aplica)
+
+| # | Criterio WCAG | Tipo TAW | Advertencias | Descripción (criterio) | Notas |
+|---|---------------|----------|--------------|------------------------|-------|
+| 8 | 1.1.1 | Advertencia | 60 | (incluidas en fila 1) | Revisar `alt` en **cada** imagen de producto |
+| 9 | 1.4.4 | Desconocido | 2 | Redimensionamiento del texto al 200% | Probar grid con zoom 200% |
+| 10 | 2.4.1 | Desconocido | 1 | Evitar bloques (skip link) | 2 no verificados en informe |
+| 11 | 2.4.2 | Desconocido | 1 | Título de página descriptivo | `<title>` para catálogo |
+| 12 | 2.4.6 | Desconocido | 31 | Encabezados y etiquetas describen propósito | h1 listado, labels filtros, nombres en tarjetas |
+| 13 | 2.4.7 | Desconocido | 4 | Foco visible en UI operable por teclado | Tarjetas, filtros, paginación |
+| 14 | 3.3.1 | Desconocido | 2 | Identificación de errores en formularios | Búsqueda sin resultados |
+| 15 | 3.3.3 | Desconocido | 1 | Sugerencias ante errores | Validación búsqueda |
+| 16 | 3.3.4 | Desconocido | 3 | Prevención de errores en envíos críticos | Probable NA |
+
+### Sin revisar / no verificados en TAW (revisión manual)
+
+| Criterio | Estado en informe | Notas |
+|----------|-------------------|-------|
+| 1.3.3 | Sin revisar (1) | Características sensoriales |
+| 1.4.1, 1.4.3, 1.4.5 | Sin revisar | Color, contraste, imágenes de texto |
+| 2.1.1, 2.1.2 | Sin revisar | Teclado / sin bloqueo de foco |
+| 2.2.1, 2.2.2, 2.3.1 | Sin revisar | Tiempo / movimiento / destellos |
+| 2.4.3, 2.4.5 | Sin revisar | Orden de foco / múltiples vías |
+| 3.1.2, 3.2.1, 3.2.3, 3.2.4 | Sin revisar | Idioma partes / foco / consistencia |
+| 3.2.2, 4.1.2 | No verificado (1) cada uno además del fallo | Completar prueba AT |
+
+### Resumen por principio WCAG
+
+| Principio | Problemas (incidencias) | Advertencias (suma) |
+|-----------|-------------------------|---------------------|
+| 1 Perceptible | 3 (1.1.1×1 + 1.3.1×2) | 62 |
+| 2 Operable | 1 (2.4.4) | 37 |
+| 3 Comprensible | 3 (3.1.1 + 3.2.2 + 3.3.2) | 6 |
+| 4 Robusto | 1 (4.1.2) | 0 |
 
 ### Notas manuales
 
-- 
+- Página con **mayor volumen de advertencias 1.1.1 (60)** del catálogo auditado hasta ahora → priorizar componente de **tarjeta de producto** y listado.
+- **2.4.6 (31 advertencias)** alineado con muchas tarjetas/controles sin encabezado o label claro.
+- Corregir `ProductCard` (o equivalente) una vez puede bajar incidencias en `/`, `/products` y rutas de detalle.
 
 ---
 
 ## Criterio de "hecho"
 
 - [ ] 0 errores W3C HTML
-- [ ] 0 errores TAW prioritarios
+- [ ] 0 fallos TAW en criterios 1.1.1, 1.3.1, 2.4.4, 3.1.1, 3.2.2, 3.3.2, 4.1.2
+- [ ] Advertencias 1.1.1 y 2.4.6 revisadas (mayor impacto)
 - [ ] Re-auditada tras el fix
 - [ ] Estado actualizado en [00-index.md](./00-index.md)
