@@ -70,8 +70,8 @@ export const ProductDetail: React.FC = () => {
           to="/products" 
           className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors"
         >
-          <ChevronLeft className="h-4 w-4 mr-1" />
-          Volver a productos
+          <ChevronLeft className="h-4 w-4 mr-1" aria-hidden="true" />
+          Volver al catálogo de productos
         </Link>
       </div>
 
@@ -93,7 +93,10 @@ export const ProductDetail: React.FC = () => {
               {product.images.map((image, index) => (
                 <button
                   key={index}
+                  type="button"
                   onClick={() => setSelectedImageIndex(index)}
+                  aria-label={`Ver imagen ${index + 1} de ${product.name}`}
+                  aria-pressed={selectedImageIndex === index}
                   className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-colors ${
                     selectedImageIndex === index 
                       ? 'border-primary' 
@@ -121,11 +124,14 @@ export const ProductDetail: React.FC = () => {
                 variant="outline"
                 size="icon"
                 onClick={() => setIsFavorite(!isFavorite)}
+                aria-label={isFavorite ? `Quitar ${product.name} de favoritos` : `Agregar ${product.name} a favoritos`}
+                aria-pressed={isFavorite}
               >
-                <Heart 
+                <Heart
                   className={`h-5 w-5 ${
                     isFavorite ? 'fill-red-500 text-red-500' : ''
-                  }`} 
+                  }`}
+                  aria-hidden="true"
                 />
               </Button>
             </div>
@@ -141,17 +147,18 @@ export const ProductDetail: React.FC = () => {
                         ? 'fill-rating text-rating'
                         : 'text-muted-foreground'
                     }`}
+                    aria-hidden="true"
                   />
                 ))}
               </div>
               <span className="text-sm text-muted-foreground">
                 {product.rating} ({product.reviews} reseñas)
               </span>
-              <Link 
+              <Link
                 to={`/product/${product.id}/reviews`}
                 className="text-sm text-primary hover:underline"
               >
-                Ver reseñas
+                Ver reseñas de {product.name}
               </Link>
             </div>
 
@@ -196,7 +203,10 @@ export const ProductDetail: React.FC = () => {
                 {product.colors.map((color) => (
                   <button
                     key={color}
+                    type="button"
                     onClick={() => setSelectedColor(color)}
+                    aria-pressed={selectedColor === color}
+                    aria-label={`Tono ${color}`}
                     className={`px-4 py-2 rounded-lg border transition-colors ${
                       selectedColor === color
                         ? 'border-primary bg-primary/10 text-primary'
@@ -216,7 +226,10 @@ export const ProductDetail: React.FC = () => {
                 {product.sizes.map((size) => (
                   <button
                     key={size}
+                    type="button"
                     onClick={() => setSelectedSize(size)}
+                    aria-pressed={selectedSize === size}
+                    aria-label={`Tamaño ${size}`}
                     className={`w-12 h-12 rounded-lg border transition-colors flex items-center justify-center font-medium ${
                       selectedSize === size
                         ? 'border-primary bg-primary/10 text-primary'
@@ -238,7 +251,7 @@ export const ProductDetail: React.FC = () => {
               onClick={handleAddToCart}
               disabled={!product.inStock}
             >
-              <ShoppingCart className="h-5 w-5 mr-2" />
+              <ShoppingCart className="h-5 w-5 mr-2" aria-hidden="true" />
               {product.inStock ? 'Agregar al Carrito' : 'Agotado'}
             </Button>
             
@@ -252,7 +265,7 @@ export const ProductDetail: React.FC = () => {
           {/* Features */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6">
             <div className="flex items-center gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10">
-              <Truck className="h-5 w-5 text-primary" />
+              <Truck className="h-5 w-5 text-primary" aria-hidden="true" />
               <div>
                 <p className="font-medium text-sm">Envío Gratis</p>
                 <p className="text-xs text-muted-foreground">Pedidos +$200.000</p>
@@ -260,7 +273,7 @@ export const ProductDetail: React.FC = () => {
             </div>
             
             <div className="flex items-center gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10">
-              <RotateCcw className="h-5 w-5 text-primary" />
+              <RotateCcw className="h-5 w-5 text-primary" aria-hidden="true" />
               <div>
                 <p className="font-medium text-sm">Devoluciones</p>
                 <p className="text-xs text-muted-foreground">30 días</p>
@@ -268,7 +281,7 @@ export const ProductDetail: React.FC = () => {
             </div>
             
             <div className="flex items-center gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10">
-              <Shield className="h-5 w-5 text-primary" />
+              <Shield className="h-5 w-5 text-primary" aria-hidden="true" />
               <div>
                 <p className="font-medium text-sm">Garantía</p>
                 <p className="text-xs text-muted-foreground">1 año</p>
@@ -320,7 +333,7 @@ export const ProductDetail: React.FC = () => {
           
           <TabsContent value="care" className="mt-6">
             <div className="space-y-4">
-              <ul className="space-y-2 text-muted-foreground">
+              <ul className="space-y-2 text-muted-foreground list-disc pl-5">
                 <li>• Aplicar sobre piel limpia e hidratada</li>
                 <li>• Conservar en lugar fresco y seco</li>
                 <li>• Cerrar bien después de cada uso</li>
