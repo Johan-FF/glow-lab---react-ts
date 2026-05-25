@@ -120,10 +120,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               onClick={handleToggleFavorite}
               aria-label={isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos'}
             >
-              <Heart 
+              <Heart
                 className={`h-4 w-4 transition-colors ${
                   isFavorite ? 'fill-red-500 text-red-500' : ''
-                }`} 
+                }`}
+                aria-hidden="true"
               />
             </Button>
             
@@ -133,8 +134,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               className={`h-8 w-8 transition-all duration-300 delay-75 ${
                 isHovered ? 'translate-x-0 opacity-100' : 'translate-x-2 opacity-0'
               }`}
+              aria-label={`Ver detalle de ${product.name}`}
             >
-              <Eye className="h-4 w-4" />
+              <Eye className="h-4 w-4" aria-hidden="true" />
             </Button>
           </div>
 
@@ -147,7 +149,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               onClick={handleAddToCart}
               disabled={!product.inStock}
             >
-              <ShoppingCart className="h-4 w-4 mr-2" />
+              <ShoppingCart className="h-4 w-4 mr-2" aria-hidden="true" />
               {product.inStock ? 'Agregar al Carrito' : 'Agotado'}
             </Button>
           </div>
@@ -162,7 +164,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             
             {/* Rating */}
             <div className="flex items-center gap-2 mt-1">
-              <div className="flex items-center">
+              <div className="flex items-center" aria-hidden="true">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
@@ -171,11 +173,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                         ? 'fill-rating text-rating'
                         : 'text-muted-foreground'
                     }`}
+                    aria-hidden="true"
                   />
                 ))}
               </div>
               <span className="text-xs text-muted-foreground">
-                ({product.reviews})
+                ({product.reviews} reseñas, valoración {product.rating} de 5)
               </span>
             </div>
           </div>
@@ -198,6 +201,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <div
                 key={index}
                 className="w-4 h-4 rounded-full border border-border"
+                title={color}
+                aria-label={`Tono ${color}`}
                 style={{ 
                   backgroundColor: color === 'Negro' || color === 'Negro Intenso' || color === 'Negro Mate' ? '#000' : 
                                   color === 'Blanco' || color === 'Blanco Perla' ? '#fff' :

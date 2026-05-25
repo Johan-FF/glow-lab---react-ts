@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Filter, Grid, List, SlidersHorizontal, Sparkles, Heart, Eye, Droplet, Brush, type LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -28,8 +28,12 @@ export const Products: React.FC = () => {
   // Read category from URL on mount
   useEffect(() => {
     const catFromUrl = searchParams.get('category');
+    const searchFromUrl = searchParams.get('search');
     if (catFromUrl) {
       setSelectedCategory(catFromUrl);
+    }
+    if (searchFromUrl) {
+      setSearchTerm(searchFromUrl);
     }
   }, [searchParams]);
 
@@ -77,8 +81,11 @@ export const Products: React.FC = () => {
       <div className="mb-8 space-y-4">
         <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
           <div className="flex items-center gap-2">
+            <Label htmlFor="products-sort" className="sr-only">
+              Ordenar productos
+            </Label>
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-48">
+              <SelectTrigger id="products-sort" className="w-48" aria-label="Ordenar productos">
                 <SelectValue placeholder="Ordenar por" />
               </SelectTrigger>
               <SelectContent>
@@ -89,11 +96,23 @@ export const Products: React.FC = () => {
               </SelectContent>
             </Select>
             
-            <Button variant={viewMode === 'grid' ? 'default' : 'outline'} size="icon" onClick={() => setViewMode('grid')}>
-              <Grid className="h-4 w-4" />
+            <Button
+              variant={viewMode === 'grid' ? 'default' : 'outline'}
+              size="icon"
+              onClick={() => setViewMode('grid')}
+              aria-label="Vista en cuadrícula"
+              aria-pressed={viewMode === 'grid'}
+            >
+              <Grid className="h-4 w-4" aria-hidden="true" />
             </Button>
-            <Button variant={viewMode === 'list' ? 'default' : 'outline'} size="icon" onClick={() => setViewMode('list')}>
-              <List className="h-4 w-4" />
+            <Button
+              variant={viewMode === 'list' ? 'default' : 'outline'}
+              size="icon"
+              onClick={() => setViewMode('list')}
+              aria-label="Vista en lista"
+              aria-pressed={viewMode === 'list'}
+            >
+              <List className="h-4 w-4" aria-hidden="true" />
             </Button>
           </div>
         </div>
@@ -120,7 +139,7 @@ export const Products: React.FC = () => {
       ) : (
         <div className="text-center py-12">
           <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Filter className="h-8 w-8 text-primary/50" />
+            <Filter className="h-8 w-8 text-primary/50" aria-hidden="true" />
           </div>
           <h3 className="text-lg font-medium mb-2">No se encontraron productos</h3>
           <p className="text-muted-foreground mb-4">Intenta ajustar los filtros o términos de búsqueda</p>

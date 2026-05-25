@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Star, ThumbsUp, ChevronLeft, Filter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
@@ -123,8 +124,8 @@ export const ProductReviews: React.FC = () => {
           to={`/product/${id}`}
           className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors"
         >
-          <ChevronLeft className="h-4 w-4 mr-1" />
-          Volver al producto
+          <ChevronLeft className="h-4 w-4 mr-1" aria-hidden="true" />
+          Volver a {product.name}
         </Link>
       </div>
 
@@ -160,6 +161,7 @@ export const ProductReviews: React.FC = () => {
                           ? 'fill-rating text-rating'
                           : 'text-muted-foreground'
                       }`}
+                      aria-hidden="true"
                     />
                   ))}
                 </div>
@@ -179,7 +181,7 @@ export const ProductReviews: React.FC = () => {
                   return (
                     <div key={rating} className="flex items-center gap-3">
                       <span className="text-sm w-3">{rating}</span>
-                      <Star className="h-3 w-3 fill-rating text-rating" />
+                      <Star className="h-3 w-3 fill-rating text-rating" aria-hidden="true" />
                       <div className="flex-1 bg-muted rounded-full h-2">
                         <div 
                           className="bg-rating h-2 rounded-full transition-all"
@@ -206,15 +208,18 @@ export const ProductReviews: React.FC = () => {
                 <>
                   {/* Rating Input */}
                   <div>
-                    <label className="text-sm font-medium mb-2 block">
-                      Tu Calificación
-                    </label>
-                    <div className="flex gap-1">
+                    <Label className="text-sm font-medium mb-2 block" id="review-rating-label">
+                      Tu calificación
+                    </Label>
+                    <div className="flex gap-1" role="group" aria-labelledby="review-rating-label">
                       {[1, 2, 3, 4, 5].map((rating) => (
                         <button
                           key={rating}
+                          type="button"
                           onClick={() => setNewRating(rating)}
                           className="hover:scale-110 transition-transform"
+                          aria-label={`${rating} de 5 estrellas`}
+                          aria-pressed={newRating === rating}
                         >
                           <Star
                             className={`h-6 w-6 ${
@@ -222,6 +227,7 @@ export const ProductReviews: React.FC = () => {
                                 ? 'fill-rating text-rating'
                                 : 'text-muted-foreground hover:text-rating'
                             }`}
+                            aria-hidden="true"
                           />
                         </button>
                       ))}
@@ -230,10 +236,11 @@ export const ProductReviews: React.FC = () => {
 
                   {/* Comment Input */}
                   <div>
-                    <label className="text-sm font-medium mb-2 block">
-                      Tu Comentario
-                    </label>
+                    <Label htmlFor="review-comment" className="text-sm font-medium mb-2 block">
+                      Tu comentario
+                    </Label>
                     <Textarea
+                      id="review-comment"
                       placeholder="Comparte tu experiencia con este producto..."
                       value={newReview}
                       onChange={(e) => setNewReview(e.target.value)}
@@ -266,8 +273,11 @@ export const ProductReviews: React.FC = () => {
         <div className="lg:col-span-2">
           {/* Filters */}
           <div className="flex flex-col sm:flex-row gap-4 mb-6">
+            <Label htmlFor="reviews-sort" className="sr-only">
+              Ordenar reseñas
+            </Label>
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-full sm:w-48">
+              <SelectTrigger id="reviews-sort" className="w-full sm:w-48" aria-label="Ordenar reseñas">
                 <SelectValue placeholder="Ordenar por" />
               </SelectTrigger>
               <SelectContent>
@@ -279,8 +289,11 @@ export const ProductReviews: React.FC = () => {
               </SelectContent>
             </Select>
 
+            <Label htmlFor="reviews-filter" className="sr-only">
+              Filtrar reseñas por calificación
+            </Label>
             <Select value={filterRating} onValueChange={setFilterRating}>
-              <SelectTrigger className="w-full sm:w-48">
+              <SelectTrigger id="reviews-filter" className="w-full sm:w-48" aria-label="Filtrar reseñas por calificación">
                 <SelectValue placeholder="Filtrar por estrellas" />
               </SelectTrigger>
               <SelectContent>
@@ -301,7 +314,7 @@ export const ProductReviews: React.FC = () => {
                 <CardContent className="p-6">
                   <div className="flex gap-4">
                     <Avatar className="w-10 h-10">
-                      <AvatarImage src={review.userAvatar} />
+                      <AvatarImage src={review.userAvatar} alt="" />
                       <AvatarFallback>
                         {review.userName.split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
@@ -334,6 +347,7 @@ export const ProductReviews: React.FC = () => {
                                   ? 'fill-rating text-rating'
                                   : 'text-muted-foreground'
                               }`}
+                              aria-hidden="true"
                             />
                           ))}
                         </div>
@@ -346,8 +360,13 @@ export const ProductReviews: React.FC = () => {
 
                       {/* Actions */}
                       <div className="flex items-center gap-4 pt-2">
-                        <Button variant="ghost" size="sm" className="h-8">
-                          <ThumbsUp className="h-3 w-3 mr-2" />
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8"
+                          aria-label={`Marcar reseña de ${review.userName} como útil, ${review.helpful} votos`}
+                        >
+                          <ThumbsUp className="h-3 w-3 mr-2" aria-hidden="true" />
                           Útil ({review.helpful})
                         </Button>
                       </div>
@@ -361,7 +380,7 @@ export const ProductReviews: React.FC = () => {
           {productReviews.length === 0 && (
             <div className="text-center py-12">
               <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
-                <Star className="h-8 w-8 text-muted-foreground" />
+                <Star className="h-8 w-8 text-muted-foreground" aria-hidden="true" />
               </div>
               <h3 className="text-lg font-medium mb-2">No hay reseñas aún</h3>
               <p className="text-muted-foreground">
