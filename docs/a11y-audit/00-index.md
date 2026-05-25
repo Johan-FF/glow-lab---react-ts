@@ -12,7 +12,7 @@
 | `/auth` | [auth.md](./auth.md) | pendiente | 9 fallos documentados | pendiente |
 | `/products` | [products.md](./products.md) | pendiente | 8 fallos documentados | pendiente |
 | `/product/:id` | [product-detail.md](./product-detail.md) | pendiente | 8 fallos documentados | pendiente |
-| `/product/:id/reviews` | [product-reviews.md](./product-reviews.md) | pendiente | pendiente | pendiente |
+| `/product/:id/reviews` | [product-reviews.md](./product-reviews.md) | pendiente | 10 fallos documentados | pendiente |
 | `/cart` | [cart.md](./cart.md) | pendiente | pendiente | pendiente |
 | `/checkout` | [checkout.md](./checkout.md) | pendiente | pendiente | pendiente |
 | `/order-confirmation` | [order-confirmation.md](./order-confirmation.md) | pendiente | pendiente | pendiente |
