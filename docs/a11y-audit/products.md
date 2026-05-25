@@ -2,7 +2,7 @@
 
 **Fecha auditoría:** 2026-05-21  
 **URL probada:** http://localhost:8080/products  
-**Estado:** pendiente (TAW documentado; faltan detalle de incidencias y W3C)
+**Estado:** pendiente (TAW y W3C documentados; faltan detalle de incidencias TAW y correcciones)
 
 **Código:** `src/pages/Products.tsx` (+ tarjetas de producto, filtros; layout global)
 
@@ -17,17 +17,32 @@
 
 ## W3C (validator.w3.org)
 
+**Fuente:** validator.w3.org sobre documento servido en `http://localhost:8080/products` (2026-05-21).  
+**Resumen:** 1 error CSS · 1 warning HTML · 0 info HTML en este informe.
+
+**Nota:** Los avisos de `<meta … />` en `index.html` documentados en [home.md](./home.md) aplican a todas las rutas; en esta validación de `/products` el validador solo reportó el badge Lovable.
+
 ### HTML
 
-| # | Severidad | Mensaje (texto del validador) | Línea/col | Elemento / snippet |
-|---|-----------|-------------------------------|-----------|------------------|
-| — | — | _Pendiente de auditoría W3C_ | — | — |
+| # | ID validador | Severidad | Mensaje (texto del validador) | Línea/col | Elemento / snippet |
+|---|--------------|-----------|-------------------------------|-----------|-------------------|
+| 1 | vnuId1 | Warning | The `complementary` role is unnecessary for element `aside`. | 207:1–212:32 | `<aside id="lovable-badge" role="complementary" …>` |
+
+**Origen probable:** badge «Edit with Lovable» inyectado en dev (no está en el repo fuente).
 
 ### CSS
 
-| # | Severidad | Mensaje | Archivo / regla |
-|---|-----------|---------|-----------------|
-| — | — | _Pendiente_ | — |
+| # | ID validador | Severidad | Mensaje | Línea/col (doc. validado) | Origen probable |
+|---|--------------|-----------|---------|---------------------------|-----------------|
+| 1 | vnuId0 | **Error** | CSS: `high` is not a `prefers-contrast` value | 188:32 | `@media (prefers-contrast: high)` en estilos del badge Lovable |
+
+### Acciones W3C sugeridas
+
+| Prioridad | Acción | Archivo / notas |
+|-----------|--------|-----------------|
+| Alta | Sustituir `prefers-contrast: high` por `more` / `less` o eliminar la regla | Estilos inyectados en dev; verificar en build de producción |
+| Media | Quitar `role="complementary"` del `<aside>` del badge | Solo entorno Lovable/dev |
+| Baja | Corregir `<meta … />` en plantilla si se revalida con informe completo | Ver [home.md](./home.md) — `index.html` |
 
 ---
 
@@ -100,7 +115,8 @@ _Detalle por incidencia (selector, HTML concreto): pegar desde TAW al expandir c
 
 ## Criterio de "hecho"
 
-- [ ] 0 errores W3C HTML
+- [ ] 0 errores W3C (HTML + CSS)
+- [ ] 0 warnings W3C HTML relevantes (badge Lovable en dev)
 - [ ] 0 fallos TAW en criterios 1.1.1, 1.3.1, 2.4.4, 3.1.1, 3.2.2, 3.3.2, 4.1.2
 - [ ] Advertencias 1.1.1 y 2.4.6 revisadas (mayor impacto)
 - [ ] Re-auditada tras el fix
