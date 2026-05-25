@@ -16,7 +16,7 @@
 | `/cart` | [cart.md](./cart.md) | pendiente | 8 fallos documentados | pendiente |
 | `/checkout` | [checkout.md](./checkout.md) | pendiente | 8 fallos documentados | pendiente |
 | `/order-confirmation` | [order-confirmation.md](./order-confirmation.md) | pendiente | 8 fallos documentados | pendiente |
-| `*` (404) | [not-found.md](./not-found.md) | pendiente | pendiente | pendiente |
+| `*` (404) | [not-found.md](./not-found.md) | pendiente | 7 fallos documentados | pendiente |
 
 ## Componentes globales (opcional)
 
