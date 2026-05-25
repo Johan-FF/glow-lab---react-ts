@@ -14,63 +14,63 @@ export const Auth: React.FC = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    name: ''
+    name: '',
   });
-  
+
   const { login, register, isLoading } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
       let success = false;
-      
+
       if (isLogin) {
         success = await login(formData.email, formData.password);
         if (success) {
           toast({
-            title: "¡Bienvenido de vuelta!",
-            description: "Has iniciado sesión correctamente.",
+            title: '¡Bienvenido de vuelta!',
+            description: 'Has iniciado sesión correctamente.',
           });
           navigate('/');
         } else {
           toast({
-            title: "Error de autenticación",
-            description: "Credenciales incorrectas. Intenta con demo@glowlab.com / 123456",
-            variant: "destructive",
+            title: 'Error de autenticación',
+            description: 'Credenciales incorrectas. Intenta con demo@glowlab.com / 123456',
+            variant: 'destructive',
           });
         }
       } else {
         success = await register(formData.email, formData.password, formData.name);
         if (success) {
           toast({
-            title: "¡Cuenta creada!",
-            description: "Tu cuenta ha sido creada exitosamente.",
+            title: '¡Cuenta creada!',
+            description: 'Tu cuenta ha sido creada exitosamente.',
           });
           navigate('/');
         } else {
           toast({
-            title: "Error de registro",
-            description: "Este email ya está registrado.",
-            variant: "destructive",
+            title: 'Error de registro',
+            description: 'Este email ya está registrado.',
+            variant: 'destructive',
           });
         }
       }
-    } catch (error) {
+    } catch {
       toast({
-        title: "Error",
-        description: "Algo salió mal. Inténtalo de nuevo.",
-        variant: "destructive",
+        title: 'Error',
+        description: 'Algo salió mal. Inténtalo de nuevo.',
+        variant: 'destructive',
       });
     }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -84,7 +84,10 @@ export const Auth: React.FC = () => {
       <div className="w-full max-w-md">
         <Card className="shadow-strong">
           <CardHeader className="text-center space-y-4">
-            <div className="mx-auto h-12 w-12 rounded-lg bg-gradient-hero flex items-center justify-center">
+            <div
+              className="mx-auto h-12 w-12 rounded-lg bg-gradient-hero flex items-center justify-center"
+              aria-hidden="true"
+            >
               <span className="text-primary-foreground font-bold text-lg">GL</span>
             </div>
             <div>
@@ -92,21 +95,25 @@ export const Auth: React.FC = () => {
                 {isLogin ? 'Iniciar Sesión' : 'Crear Cuenta'}
               </CardTitle>
               <CardDescription>
-                {isLogin 
-                  ? 'Ingresa a tu cuenta de GlowLab' 
-                  : 'Únete a la comunidad GlowLab'
-                }
+                {isLogin ? 'Ingresa a tu cuenta de GlowLab' : 'Únete a la comunidad GlowLab'}
               </CardDescription>
             </div>
           </CardHeader>
 
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4" aria-labelledby="auth-form-title">
+              <p id="auth-form-title" className="sr-only">
+                {isLogin ? 'Formulario de inicio de sesión' : 'Formulario de registro'}
+              </p>
+
               {!isLogin && (
                 <div className="space-y-2">
                   <Label htmlFor="name">Nombre completo</Label>
                   <div className="relative">
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <User
+                      className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground"
+                      aria-hidden="true"
+                    />
                     <Input
                       id="name"
                       name="name"
@@ -116,6 +123,7 @@ export const Auth: React.FC = () => {
                       onChange={handleInputChange}
                       className="pl-10"
                       required={!isLogin}
+                      autoComplete="name"
                     />
                   </div>
                 </div>
@@ -124,7 +132,10 @@ export const Auth: React.FC = () => {
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Mail
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground"
+                    aria-hidden="true"
+                  />
                   <Input
                     id="email"
                     name="email"
@@ -134,6 +145,7 @@ export const Auth: React.FC = () => {
                     onChange={handleInputChange}
                     className="pl-10"
                     required
+                    autoComplete="email"
                   />
                 </div>
               </div>
@@ -141,36 +153,42 @@ export const Auth: React.FC = () => {
               <div className="space-y-2">
                 <Label htmlFor="password">Contraseña</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Lock
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground"
+                    aria-hidden="true"
+                  />
                   <Input
                     id="password"
                     name="password"
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="••••••••"
                     value={formData.password}
                     onChange={handleInputChange}
                     className="pl-10 pr-10"
                     required
                     minLength={6}
+                    autoComplete={isLogin ? 'current-password' : 'new-password'}
                   />
-                  <button
+                  <Button
                     type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                    aria-pressed={showPassword}
                   >
-                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                  </button>
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4" aria-hidden="true" />
+                    ) : (
+                      <Eye className="h-4 w-4" aria-hidden="true" />
+                    )}
+                  </Button>
                 </div>
               </div>
 
-              <Button 
-                type="submit" 
-                className="w-full" 
-                size="lg"
-                disabled={isLoading}
-                variant="accent"
-              >
-                {isLoading ? 'Procesando...' : (isLogin ? 'Iniciar Sesión' : 'Crear Cuenta')}
+              <Button type="submit" className="w-full" size="lg" disabled={isLoading} variant="accent">
+                {isLoading ? 'Procesando...' : isLogin ? 'Iniciar Sesión' : 'Crear Cuenta'}
               </Button>
             </form>
 
@@ -184,13 +202,13 @@ export const Auth: React.FC = () => {
 
             <div className="mt-6 text-center">
               <p className="text-sm text-muted-foreground">
-                {isLogin ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?'}
+                {isLogin ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?'}{' '}
                 <button
                   type="button"
                   onClick={toggleMode}
-                  className="ml-1 text-primary hover:underline font-medium"
+                  className="text-primary hover:underline font-medium"
                 >
-                  {isLogin ? 'Regístrate' : 'Inicia sesión'}
+                  {isLogin ? 'Regístrate aquí' : 'Inicia sesión aquí'}
                 </button>
               </p>
             </div>
