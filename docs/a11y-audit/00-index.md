@@ -16,7 +16,7 @@
 | `/cart` | [cart.md](./cart.md) | 1 error, 1 warning, 6 info | 8 fallos documentados | pendiente |
 | `/checkout` | [checkout.md](./checkout.md) | 1 error, 1 warning, 6 info | 8 fallos documentados | pendiente |
 | `/order-confirmation` | [order-confirmation.md](./order-confirmation.md) | 1 error, 1 warning, 6 info | 8 fallos documentados | pendiente |
-| `*` (404) | [not-found.md](./not-found.md) | pendiente | 7 fallos documentados | pendiente |
+| `*` (404) | [not-found.md](./not-found.md) | 1 error, 1 warning, 6 info | 7 fallos documentados | pendiente |
 
 ## Componentes globales (opcional)
 
