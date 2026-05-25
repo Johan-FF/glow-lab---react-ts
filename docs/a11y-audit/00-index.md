@@ -13,7 +13,7 @@
 | `/products` | [products.md](./products.md) | 1 error, 1 warning | 8 fallos documentados | pendiente |
 | `/product/:id` | [product-detail.md](./product-detail.md) | 1 error, 1 warning, 6 info | 8 fallos documentados | pendiente |
 | `/product/:id/reviews` | [product-reviews.md](./product-reviews.md) | 1 error, 1 warning, 6 info | 10 fallos documentados | pendiente |
-| `/cart` | [cart.md](./cart.md) | pendiente | 8 fallos documentados | pendiente |
+| `/cart` | [cart.md](./cart.md) | 1 error, 1 warning, 6 info | 8 fallos documentados | pendiente |
 | `/checkout` | [checkout.md](./checkout.md) | pendiente | 8 fallos documentados | pendiente |
 | `/order-confirmation` | [order-confirmation.md](./order-confirmation.md) | pendiente | 8 fallos documentados | pendiente |
 | `*` (404) | [not-found.md](./not-found.md) | pendiente | 7 fallos documentados | pendiente |
