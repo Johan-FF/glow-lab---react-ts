@@ -15,7 +15,7 @@ export const OrderConfirmation: React.FC = () => {
       <div className="max-w-2xl mx-auto text-center">
         {/* Success Icon */}
         <div className="w-20 h-20 bg-success/15 rounded-full flex items-center justify-center mx-auto mb-6">
-          <CheckCircle className="h-12 w-12 text-success" />
+          <CheckCircle className="h-12 w-12 text-success" aria-hidden="true" />
         </div>
 
         {/* Success Message */}
@@ -55,7 +55,7 @@ export const OrderConfirmation: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="text-center p-6 rounded-lg bg-primary/5 border border-primary/10">
             <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Mail className="h-6 w-6 text-primary" />
+              <Mail className="h-6 w-6 text-primary" aria-hidden="true" />
             </div>
             <h3 className="font-semibold mb-2">Confirmación por Email</h3>
             <p className="text-sm text-muted-foreground">
@@ -65,7 +65,7 @@ export const OrderConfirmation: React.FC = () => {
 
           <div className="text-center p-6 rounded-lg bg-primary/5 border border-primary/10">
             <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Package className="h-6 w-6 text-primary" />
+              <Package className="h-6 w-6 text-primary" aria-hidden="true" />
             </div>
             <h3 className="font-semibold mb-2">Preparación</h3>
             <p className="text-sm text-muted-foreground">
@@ -75,7 +75,7 @@ export const OrderConfirmation: React.FC = () => {
 
           <div className="text-center p-6 rounded-lg bg-primary/5 border border-primary/10">
             <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Truck className="h-6 w-6 text-primary" />
+              <Truck className="h-6 w-6 text-primary" aria-hidden="true" />
             </div>
             <h3 className="font-semibold mb-2">Envío</h3>
             <p className="text-sm text-muted-foreground">
