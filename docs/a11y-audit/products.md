@@ -2,7 +2,7 @@
 
 **Fecha auditoría:** 2026-05-21  
 **URL probada:** http://localhost:8080/products  
-**Estado:** pendiente (TAW y W3C documentados; faltan detalle de incidencias TAW y correcciones)
+**Estado:** hecho (código 2026-05-25; re-auditar TAW/W3C)
 
 **Código:** `src/pages/Products.tsx` (+ tarjetas de producto, filtros; layout global)
 
