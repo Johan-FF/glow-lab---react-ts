@@ -2,7 +2,7 @@
 
 **Fecha auditoría:** 2026-05-21  
 **URL probada:** http://localhost:8080/checkout  
-**Estado:** pendiente (TAW documentado; faltan detalle de incidencias y W3C)
+**Estado:** pendiente (TAW y W3C documentados; faltan detalle de incidencias TAW y correcciones)
 
 **Código:** `src/pages/Checkout.tsx` (+ layout global)
 
@@ -17,17 +17,36 @@
 
 ## W3C (validator.w3.org)
 
+**Fuente:** validator.w3.org sobre documento servido en `http://localhost:8080/checkout` (2026-05-21).  
+**Resumen:** 1 error CSS · 1 warning HTML · 6 info HTML.
+
 ### HTML
 
-| # | Severidad | Mensaje (texto del validador) | Línea/col | Elemento / snippet |
-|---|-----------|-------------------------------|-----------|------------------|
-| — | — | _Pendiente de auditoría W3C_ | — | — |
+| # | ID validador | Severidad | Mensaje (texto del validador) | Línea/col | Elemento / snippet |
+|---|--------------|-----------|-------------------------------|-----------|-------------------|
+| 1 | vnuId2 | Info | Trailing slash on void elements has no effect (and interacts badly with unquoted attribute values). | 4:5–4:28 | `<meta charset="UTF-8" />` |
+| 2 | vnuId3 | Info | Idem | 5:5–5:76 | `<meta name="viewport" content="width=device-width, initial-scale=1.0" />` |
+| 3 | vnuId4 | Info | Idem | 8:5–8:44 | `<meta name="author" content="GlowLab" />` |
+| 4 | vnuId5 | Info | Idem | 12:5–12:49 | `<meta property="og:type" content="website" />` |
+| 5 | vnuId6 | Info | Idem | 15:5–15:62 | `<meta name="twitter:card" content="summary_large_image" />` |
+| 6 | vnuId7 | Info | Idem | 16:5–16:55 | `<meta name="twitter:site" content="@lovable_dev" />` |
+| 7 | vnuId1 | Warning | The `complementary` role is unnecessary for element `aside`. | 207:1–212:32 | `<aside id="lovable-badge" role="complementary" …>` |
+
+**Origen probable:** filas 1–6 → `index.html` (plantilla Vite). Fila 7 → badge «Edit with Lovable» inyectado en dev (no está en el repo fuente).
 
 ### CSS
 
-| # | Severidad | Mensaje | Archivo / regla |
-|---|-----------|---------|-----------------|
-| — | — | _Pendiente_ | — |
+| # | ID validador | Severidad | Mensaje | Línea/col (doc. validado) | Origen probable |
+|---|--------------|-----------|---------|---------------------------|-----------------|
+| 1 | vnuId0 | **Error** | CSS: `high` is not a `prefers-contrast` value | 188:32 | `@media (prefers-contrast: high)` en estilos del badge Lovable |
+
+### Acciones W3C sugeridas
+
+| Prioridad | Acción | Archivo / notas |
+|-----------|--------|-----------------|
+| Alta | Sustituir `prefers-contrast: high` por `more` / `less` o eliminar la regla | Estilos inyectados en dev; verificar en build de producción |
+| Media | Quitar `role="complementary"` del `<aside>` del badge | Solo entorno Lovable/dev |
+| Baja | Quitar `/` final en `<meta … />` → `<meta …>` (HTML5) | `index.html` líneas 4, 5, 8, 12, 15, 16 y resto de `<meta />` con barra |
 
 ---
 
@@ -99,7 +118,8 @@ _Detalle por incidencia (selector, HTML concreto): pegar desde TAW al expandir c
 
 ## Criterio de "hecho"
 
-- [ ] 0 errores W3C HTML
+- [ ] 0 errores W3C (HTML + CSS)
+- [ ] 0 warnings W3C HTML relevantes (badge Lovable en dev)
 - [ ] 0 fallos TAW en criterios 1.1.1, 1.3.1, 2.4.4, 3.1.1, 3.2.2, 3.3.2, 4.1.2
 - [ ] 3.3.1, 3.3.3 y **3.3.4** cumplidos (checkout financiero)
 - [ ] Re-auditada tras el fix
