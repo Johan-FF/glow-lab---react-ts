@@ -26,7 +26,7 @@ export const Cart: React.FC = () => {
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-md mx-auto text-center">
           <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-            <ShoppingBag className="h-12 w-12 text-primary/50" />
+            <ShoppingBag className="h-12 w-12 text-primary/50" aria-hidden="true" />
           </div>
           <h1 className="text-2xl font-bold mb-4">Tu bolsa está vacía</h1>
           <p className="text-muted-foreground mb-8">
@@ -51,12 +51,10 @@ export const Cart: React.FC = () => {
             to="/products" 
             className="inline-flex items-center text-primary hover:text-primary/80 transition-colors mb-4"
           >
-            <ArrowLeft className="h-4 w-4 mr-2" />
+            <ArrowLeft className="h-4 w-4 mr-2" aria-hidden="true" />
             Seguir comprando
           </Link>
-          <h1 className="text-3xl font-bold text-foreground">
-            🛍️ Carrito de Compras
-          </h1>
+          <h1 className="text-3xl font-bold text-foreground">Carrito de Compras</h1>
           <p className="text-muted-foreground">
             {getTotalItems()} {getTotalItems() === 1 ? 'producto' : 'productos'} en tu carrito
           </p>
@@ -77,8 +75,8 @@ export const Cart: React.FC = () => {
               onClick={clearCart}
               className="text-destructive hover:text-destructive"
             >
-              <Trash2 className="h-4 w-4 mr-2" />
-              Vaciar Carrito
+              <Trash2 className="h-4 w-4 mr-2" aria-hidden="true" />
+              Vaciar carrito
             </Button>
           </div>
 
@@ -118,8 +116,9 @@ export const Cart: React.FC = () => {
                           size="icon"
                           onClick={() => removeFromCart(item.id, item.size, item.color)}
                           className="text-destructive hover:text-destructive h-8 w-8"
+                          aria-label={`Eliminar ${item.name} del carrito`}
                         >
-                          <Trash2 className="h-4 w-4" />
+                          <Trash2 className="h-4 w-4" aria-hidden="true" />
                         </Button>
                       </div>
 
@@ -133,8 +132,9 @@ export const Cart: React.FC = () => {
                               size="icon"
                               className="h-8 w-8"
                               onClick={() => updateQuantity(item.id, item.size, item.color, item.quantity - 1)}
+                              aria-label={`Reducir cantidad de ${item.name}`}
                             >
-                              <Minus className="h-3 w-3" />
+                              <Minus className="h-3 w-3" aria-hidden="true" />
                             </Button>
                             <span className="font-medium w-8 text-center">
                               {item.quantity}
@@ -144,8 +144,9 @@ export const Cart: React.FC = () => {
                               size="icon"
                               className="h-8 w-8"
                               onClick={() => updateQuantity(item.id, item.size, item.color, item.quantity + 1)}
+                              aria-label={`Aumentar cantidad de ${item.name}`}
                             >
-                              <Plus className="h-3 w-3" />
+                              <Plus className="h-3 w-3" aria-hidden="true" />
                             </Button>
                           </div>
                         </div>
