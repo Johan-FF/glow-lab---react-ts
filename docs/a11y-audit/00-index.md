@@ -15,7 +15,7 @@
 | `/product/:id/reviews` | [product-reviews.md](./product-reviews.md) | pendiente | 10 fallos documentados | pendiente |
 | `/cart` | [cart.md](./cart.md) | pendiente | 8 fallos documentados | pendiente |
 | `/checkout` | [checkout.md](./checkout.md) | pendiente | 8 fallos documentados | pendiente |
-| `/order-confirmation` | [order-confirmation.md](./order-confirmation.md) | pendiente | pendiente | pendiente |
+| `/order-confirmation` | [order-confirmation.md](./order-confirmation.md) | pendiente | 8 fallos documentados | pendiente |
 | `*` (404) | [not-found.md](./not-found.md) | pendiente | pendiente | pendiente |
 
 ## Componentes globales (opcional)
