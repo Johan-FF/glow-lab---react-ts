@@ -99,7 +99,7 @@ export const Checkout: React.FC = () => {
           to="/cart" 
           className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors mb-4"
         >
-          <ArrowLeft className="h-4 w-4 mr-2" />
+          <ArrowLeft className="h-4 w-4 mr-2" aria-hidden="true" />
           Volver al carrito
         </Link>
         <h1 className="text-3xl font-bold text-foreground">Checkout</h1>
@@ -234,7 +234,7 @@ export const Checkout: React.FC = () => {
                   <div className="flex items-center space-x-2 p-3 rounded-lg border border-primary/15 hover:bg-primary/5">
                     <RadioGroupItem value="card" id="card" />
                     <Label htmlFor="card" className="flex items-center gap-2 cursor-pointer">
-                      <CreditCard className="h-4 w-4" />
+                      <CreditCard className="h-4 w-4" aria-hidden="true" />
                       Tarjeta de Crédito/Débito
                     </Label>
                   </div>
@@ -383,11 +383,11 @@ export const Checkout: React.FC = () => {
                 {/* Security Features */}
                 <div className="pt-4 space-y-2">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Shield className="h-4 w-4" />
+                    <Shield className="h-4 w-4" aria-hidden="true" />
                     <span>Pago 100% seguro</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Truck className="h-4 w-4" />
+                    <Truck className="h-4 w-4" aria-hidden="true" />
                     <span>Envío gratis en pedidos +$200.000</span>
                   </div>
                 </div>
@@ -401,12 +401,12 @@ export const Checkout: React.FC = () => {
                 >
                   {isProcessing ? (
                     <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                      <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" aria-hidden="true" />
                       Procesando...
                     </div>
                   ) : (
                     <div className="flex items-center gap-2">
-                      <Check className="h-4 w-4" />
+                      <Check className="h-4 w-4" aria-hidden="true" />
                       Confirmar Pedido
                     </div>
                   )}
