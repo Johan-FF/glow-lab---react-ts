@@ -2,14 +2,14 @@
 
 **Proyecto:** glow-lab-project  
 **Entorno de prueba:** `bun run dev` → http://localhost:8080  
-**Fecha inicio auditoría:** _rellenar_
+**Fecha inicio auditoría:** 2026-05-21
 
 ## Estado por página
 
 | Ruta | Archivo | W3C HTML | TAW | Estado |
 |------|---------|----------|-----|--------|
-| `/` | [home.md](./home.md) | pendiente | pendiente | pendiente |
-| `/auth` | [auth.md](./auth.md) | pendiente | pendiente | pendiente |
+| `/` | [home.md](./home.md) | pendiente | 8 fallos documentados | pendiente |
+| `/auth` | [auth.md](./auth.md) | pendiente | 9 fallos documentados | pendiente |
 | `/products` | [products.md](./products.md) | pendiente | pendiente | pendiente |
 | `/product/:id` | [product-detail.md](./product-detail.md) | pendiente | pendiente | pendiente |
 | `/product/:id/reviews` | [product-reviews.md](./product-reviews.md) | pendiente | pendiente | pendiente |
