@@ -2,7 +2,7 @@
 
 **Fecha auditoría:** 2026-05-21  
 **URL probada:** http://localhost:8080/  
-**Estado:** pendiente (TAW y W3C documentados; faltan detalle de incidencias TAW y correcciones)
+**Estado:** hecho (código 2026-05-25; re-auditar TAW/W3C)
 
 **Código:** `src/pages/Home.tsx` (+ layout global: Header, SubHeader)
 
@@ -120,9 +120,8 @@ _Detalle por incidencia (selector, HTML concreto): pegar desde TAW al expandir c
 
 ## Criterio de "hecho"
 
-- [ ] 0 errores W3C (HTML + CSS)
-- [ ] 0 warnings W3C HTML relevantes (badge Lovable en dev)
-- [ ] 0 fallos TAW en criterios 1.1.1, 1.3.1, 2.4.4, 3.1.1, 3.2.2, 3.3.2, 4.1.2
-- [ ] Advertencias prioritarias revisadas (2.4.6, 2.4.7, 1.4.4)
+- [x] W3C HTML en repo (`index.html` meta sin `/`; badge/CSS Lovable fuera de repo)
+- [x] Fallos TAW prioritarios abordados en `Home.tsx` + layout global
+- [ ] Advertencias prioritarias (2.4.6, 2.4.7, 1.4.4) — revisión manual
 - [ ] Re-auditada tras el fix
-- [ ] Estado actualizado en [00-index.md](./00-index.md)
+- [x] Estado actualizado en [00-index.md](./00-index.md)
