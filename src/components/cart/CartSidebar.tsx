@@ -2,73 +2,79 @@ import React from 'react';
 import { X, Plus, Minus, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 import { useCart } from '@/contexts/CartContext';
 import { Link } from 'react-router-dom';
 import { formatPrice } from '@/lib/formatPrice';
 
 export const CartSidebar: React.FC = () => {
-  const { 
-    items, 
-    isCartOpen, 
-    setIsCartOpen, 
-    updateQuantity, 
-    removeFromCart, 
-    getTotalPrice 
+  const {
+    items,
+    isCartOpen,
+    setIsCartOpen,
+    updateQuantity,
+    removeFromCart,
+    getTotalPrice,
   } = useCart();
 
   if (!isCartOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50">
-      {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-black/40"
+    <div className="fixed inset-0 z-50" role="presentation">
+      <button
+        type="button"
+        className="absolute inset-0 bg-black/40 border-0 p-0 cursor-default"
+        aria-label="Cerrar carrito"
         onClick={() => setIsCartOpen(false)}
       />
-      
-      {/* Sidebar */}
-      <div className="absolute right-0 top-0 h-full w-full max-w-md bg-background shadow-strong border-l z-10">
+
+      <aside
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cart-sidebar-title"
+        className="absolute right-0 top-0 h-full w-full max-w-md bg-background shadow-strong border-l z-10"
+      >
         <div className="flex h-full flex-col">
-          {/* Header */}
           <div className="flex items-center justify-between p-6 border-b">
-            <h2 className="text-lg font-semibold">Carrito de Compras</h2>
+            <h2 id="cart-sidebar-title" className="text-lg font-semibold">
+              Carrito de Compras
+            </h2>
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsCartOpen(false)}
+              aria-label="Cerrar carrito de compras"
             >
-              <X className="h-4 w-4" />
+              <X className="h-4 w-4" aria-hidden="true" />
             </Button>
           </div>
 
-          {/* Cart Items */}
           <div className="flex-1 overflow-y-auto p-6">
             {items.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full text-center">
-                <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
+                <div
+                  className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4"
+                  aria-hidden="true"
+                >
                   <Trash2 className="h-8 w-8 text-muted-foreground" />
                 </div>
                 <h3 className="text-lg font-medium mb-2">Tu bolsa está vacía</h3>
                 <p className="text-muted-foreground mb-4">
                   Agrega algunos productos para comenzar
                 </p>
-                <Button onClick={() => setIsCartOpen(false)}>
-                  Seguir Comprando
-                </Button>
+                <Button onClick={() => setIsCartOpen(false)}>Seguir Comprando</Button>
               </div>
             ) : (
-              <div className="space-y-4">
+              <ul className="space-y-4 list-none p-0 m-0">
                 {items.map((item) => (
-                  <div key={`${item.id}-${item.size}-${item.color}`} className="flex gap-4">
-                    <div className="h-20 w-20 rounded-lg overflow-hidden bg-muted">
+                  <li key={`${item.id}-${item.size}-${item.color}`} className="flex gap-4">
+                    <div className="h-20 w-20 rounded-lg overflow-hidden bg-muted shrink-0">
                       <img
                         src={item.image}
                         alt={item.name}
                         className="h-full w-full object-cover"
                       />
                     </div>
-                    
+
                     <div className="flex-1 space-y-2">
                       <h4 className="font-medium text-sm leading-tight">{item.name}</h4>
                       <div className="flex gap-2">
@@ -79,30 +85,36 @@ export const CartSidebar: React.FC = () => {
                           {item.color}
                         </Badge>
                       </div>
-                      
+
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Button
                             variant="outline"
                             size="icon"
                             className="h-6 w-6"
-                            onClick={() => updateQuantity(item.id, item.size, item.color, item.quantity - 1)}
+                            onClick={() =>
+                              updateQuantity(item.id, item.size, item.color, item.quantity - 1)
+                            }
+                            aria-label={`Reducir cantidad de ${item.name}`}
                           >
-                            <Minus className="h-3 w-3" />
+                            <Minus className="h-3 w-3" aria-hidden="true" />
                           </Button>
-                          <span className="text-sm font-medium w-8 text-center">
+                          <span className="text-sm font-medium w-8 text-center" aria-live="polite">
                             {item.quantity}
                           </span>
                           <Button
                             variant="outline"
                             size="icon"
                             className="h-6 w-6"
-                            onClick={() => updateQuantity(item.id, item.size, item.color, item.quantity + 1)}
+                            onClick={() =>
+                              updateQuantity(item.id, item.size, item.color, item.quantity + 1)
+                            }
+                            aria-label={`Aumentar cantidad de ${item.name}`}
                           >
-                            <Plus className="h-3 w-3" />
+                            <Plus className="h-3 w-3" aria-hidden="true" />
                           </Button>
                         </div>
-                        
+
                         <div className="flex items-center gap-2">
                           <span className="font-medium text-sm">
                             {formatPrice(item.price * item.quantity)}
@@ -112,44 +124,40 @@ export const CartSidebar: React.FC = () => {
                             size="icon"
                             className="h-6 w-6 text-destructive hover:text-destructive"
                             onClick={() => removeFromCart(item.id, item.size, item.color)}
+                            aria-label={`Eliminar ${item.name} del carrito`}
                           >
-                            <Trash2 className="h-3 w-3" />
+                            <Trash2 className="h-3 w-3" aria-hidden="true" />
                           </Button>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             )}
           </div>
 
-          {/* Footer */}
           {items.length > 0 && (
             <div className="p-6 border-t space-y-4">
               <div className="flex items-center justify-between text-lg font-semibold">
                 <span>Total:</span>
                 <span>{formatPrice(getTotalPrice())}</span>
               </div>
-              
+
               <div className="space-y-2">
                 <Link to="/checkout" onClick={() => setIsCartOpen(false)}>
                   <Button className="w-full bg-gradient-accent hover:opacity-90" size="lg">
                     Proceder al Checkout
                   </Button>
                 </Link>
-                <Button 
-                  variant="outline" 
-                  className="w-full"
-                  onClick={() => setIsCartOpen(false)}
-                >
+                <Button variant="outline" className="w-full" onClick={() => setIsCartOpen(false)}>
                   Seguir Comprando
                 </Button>
               </div>
             </div>
           )}
         </div>
-      </div>
+      </aside>
     </div>
   );
 };
