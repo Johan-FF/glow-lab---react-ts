@@ -1,0 +1,383 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  urlcolor=blue!70!black,
+  citecolor=blue!60!black,
+  pdftitle={Informe de auditoría de accesibilidad — GlowLab},
+  pdfauthor={GlowLab Project}
+}
+
+\title{%
+  \textbf{Informe formal de auditoría de accesibilidad}\\[0.4em]
+  \large Proyecto \textit{glow-lab-project}\\[0.2em]
+  \normalsize Herramientas TAW y W3C Markup Validator
+}
+\author{Documentación derivada de \texttt{docs/a11y-audit/}}
+\date{Auditoría: 21 de mayo de 2026 \quad|\quad Correcciones en código: 25 de mayo de 2026}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\vfill
+\begin{center}
+  \small
+  Rama de trabajo: \texttt{release/taw-w3c-analitics}\\
+  Entorno de prueba: \texttt{bun run dev} $\rightarrow$ \url{http://localhost:8080}\\
+  Nivel objetivo: WCAG 2.0 nivel AA (informes TAW)
+\end{center}
+\newpage
+
+\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------
+\section{Resumen ejecutivo}
+%----------------------------------------------------------------------
+
+Entre el 21 y el 25 de mayo de 2026 se auditó la aplicación web \textbf{GlowLab} (e-commerce de belleza) con dos herramientas complementarias: el analizador \textbf{TAW} (criterios WCAG 2.0 AA) y el \textbf{validador W3C} (\url{https://validator.w3.org/}) sobre el HTML y CSS servidos en desarrollo.
+
+Se documentaron \textbf{nueve ámbitos funcionales} (layout global y ocho rutas o plantillas) en \texttt{docs/a11y-audit/}. Los hallazgos iniciales mostraron un patrón repetido: fallos TAW de prioridad alta en criterios \textbf{1.1.1}, \textbf{1.3.1}, \textbf{2.4.4}, \textbf{3.1.1}, \textbf{3.2.2}, \textbf{3.3.2} y \textbf{4.1.2}, más avisos W3C corregibles en \texttt{index.html} y hallazgos \textbf{fuera del repositorio} ligados al badge de desarrollo Lovable.
+
+Se aplicaron \textbf{20 commits de corrección} (\texttt{fix(a11y):}) siguiendo el orden \emph{global primero}, luego cada ruta con par \textbf{TAW $\rightarrow$ W3C}. El índice de seguimiento (\texttt{00-index.md}) marca todas las rutas como \textbf{hecho} en código, con \textbf{re-auditoría manual pendiente}. Los avisos del badge Lovable (\texttt{role="complementary"}}, \texttt{prefers-contrast: high}) \textbf{no se corrigen en el repo} porque solo aparecen en entorno de desarrollo.
+
+%----------------------------------------------------------------------
+\section{Metodología}
+%----------------------------------------------------------------------
+
+\subsection{Preparación del entorno}
+
+\begin{enumerate}[noitemsep]
+  \item Arranque del proyecto: \texttt{bun run dev} (puerto \textbf{8080}).
+  \item Mismo viewport y navegador en todas las pasadas TAW (detalle a completar en re-auditoría).
+  \item Una carpeta Markdown por ruta o ámbito, más plantilla \texttt{\_template.md} e índice \texttt{00-index.md}.
+\end{enumerate}
+
+\subsection{Herramienta TAW (accesibilidad)}
+
+TAW generó informes resumen por criterio WCAG 2.0 AA. Para cada URL se registraron:
+\begin{itemize}[noitemsep]
+  \item \textbf{Fallos} (problemas): criterios con al menos una incidencia de tipo \emph{Falla}.
+  \item \textbf{Advertencias}: suma por criterio (p.\,ej.\ 60 advertencias en 1.1.1 en \texttt{/products}).
+  \item Criterios \textbf{sin revisar} o \textbf{no verificados} (contraste, teclado, tiempo, etc.).
+\end{itemize}
+
+Los mensajes exactos y el detalle por selector debían ampliarse desde la vista expandida de TAW; la documentación conserva el resumen por criterio y el componente probable.
+
+\subsection{Validador W3C (markup y CSS)}
+
+Sobre el documento HTML renderizado de cada URL (o equivalente en \texttt{validator.w3.org}):
+\begin{itemize}[noitemsep]
+  \item \textbf{HTML}: en \texttt{/} y varias rutas, seis avisos \emph{Info} por barra final en elementos void (\texttt{<meta … />}).
+  \item \textbf{HTML}: un \emph{Warning} recurrente por \texttt{role="complementary"} en \texttt{<aside id="lovable-badge">} (inyectado en dev).
+  \item \textbf{CSS}: un \emph{Error} por \texttt{@media (prefers-contrast: high)} --- valor no válido según Media Queries Level 5 (usar \texttt{more} / \texttt{less}).
+\end{itemize}
+
+\subsection{Estrategia de corrección en Git}
+
+Tras documentar hallazgos con commits \texttt{docs(a11y):} (19 archivos de auditoría + plantillas), se ejecutó un bloque de \textbf{20 commits} \texttt{fix(a11y):} con esta regla:
+
+\begin{enumerate}[noitemsep]
+  \item \textbf{Layout global} (Header, SubHeader, sidebars, \texttt{App.tsx}, \texttt{index.html}).
+  \item Por cada ruta: primero \texttt{fix(a11y): address TAW findings for …}, inmediatamente después \texttt{fix(a11y): address W3C findings for …}.
+\end{enumerate}
+
+Esto separa responsabilidades semánticas (TAW / ARIA / formularios) de conformidad del shell HTML (metadatos void, \texttt{lang}).
+
+%----------------------------------------------------------------------
+\section{Hallazgos iniciales (antes)}
+%----------------------------------------------------------------------
+
+\subsection{Patrón transversal W3C}
+
+En la mayoría de rutas el validador reportó la misma ternia:
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Severidad} & \textbf{Mensaje} & \textbf{Origen} \\
+\midrule
+Info (×6) & Trailing slash on void elements & \texttt{index.html} \\
+Warning & \texttt{complementary} innecesario en \texttt{aside} & Badge Lovable (dev) \\
+Error CSS & \texttt{prefers-contrast: high} inválido & Estilos badge Lovable (dev) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Patrón transversal TAW (fallos de prioridad alta)}
+
+Los siete criterios con \emph{falla} se repitieron en casi todas las páginas (salvo \textbf{3.1.1} en 404, que ya pasaba en el informe inicial):
+
+\begin{center}
+\small
+\begin{tabular}{@{}clp{7.5cm}@{}}
+\toprule
+\textbf{WCAG} & \textbf{Nombre breve} & \textbf{Manifestación típica en GlowLab} \\
+\midrule
+1.1.1 & Contenido no textual & Imágenes de producto, iconos Lucide sin \texttt{alt}/nombre accesible \\
+1.3.1 & Información y relaciones & Grids, sidebars, formularios sin estructura semántica clara \\
+2.4.4 & Propósito del enlace & Tarjetas e iconos sin texto visible \\
+3.1.1 & Idioma de la página & \texttt{<html>} sin \texttt{lang="es"} \\
+3.2.2 & Cambio de contexto al introducir datos & Filtros/búsqueda que alteran vista sin aviso \\
+3.3.2 & Etiquetas de formulario & Buscador, auth, checkout sin \texttt{label} asociado \\
+4.1.2 & Nombre, función, valor & Botones Radix/shadcn solo con icono \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Matriz resumen por ruta (estado inicial TAW)}
+
+{\small
+\begin{longtable}{@{}lrrrrp{4.2cm}@{}}
+\caption{Resumen TAW por ruta (21-may-2026, antes de correcciones)} \\
+\toprule
+\textbf{Ruta} & \textbf{Fallos (criterios)} & \textbf{Incid.} & \textbf{Adv.} & \textbf{Nota destacada} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{l}{\textit{(continuación)}} \\
+\toprule
+\textbf{Ruta} & \textbf{Fallos} & \textbf{Incid.} & \textbf{Adv.} & \textbf{Nota} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{/} (home) & 7 & 8 & 31 & 8 criterios con problema; muchas adv.\ en 2.4.6 \\
+\texttt{/auth} & 7 & 9 & 23 & Formulario: 1.3.1 (×3), 3.3.x \\
+\texttt{/products} & 7 & 8 & \textbf{105} & 60 adv.\ en 1.1.1 (imágenes catálogo) \\
+\texttt{/product/:id} & 7 & 8 & 20 & Menos 1.1.1 que catálogo \\
+\texttt{/product/:id/reviews} & 7 & \textbf{10} & 20 & 1.1.1 con \textbf{3} problemas (estrellas) \\
+\texttt{/cart} & 7 & 8 & 14 & 3.3.4 relevante hacia checkout \\
+\texttt{/checkout} & 7 & 8 & 14 & Transacción: 3.3.4 crítico \\
+\texttt{/order-confirmation} & 7 & 8 & 20 & 2.4.6 (6 adv.); mensaje éxito \\
+\texttt{*} (404) & \textbf{6} & 7 & 14 & \textbf{3.1.1 pasa}; sin fallo idioma \\
+\bottomrule
+\end{longtable}
+}
+
+%----------------------------------------------------------------------
+\section{Cambios implementados (después)}
+%----------------------------------------------------------------------
+
+\subsection{Correcciones globales (layout compartido)}
+
+Documentadas en \texttt{docs/a11y-audit/global.md}. Commits: \texttt{6a95a97} (TAW), \texttt{40d8ee1} (W3C).
+
+\begin{description}[style=nextline, leftmargin=2.2cm]
+  \item[Antes --- W3C] Metas void con barra (\texttt{<meta … />}); documento sin \texttt{lang} explícito en plantilla.
+  \item[Después --- W3C] \texttt{index.html}: \texttt{lang="es"}; metas sin \texttt{/} final (HTML5).
+  \item[Antes --- TAW] Iconos de Header sin nombre; buscador sin etiqueta; sidebars sin patrón diálogo; sin skip link.
+  \item[Después --- TAW] \texttt{aria-label} en tema, favoritos, carrito y menú móvil; logo con nombre accesible; iconos decorativos con \texttt{aria-hidden}; SubHeader con \texttt{Label} y \texttt{type="search"}; \texttt{nav} de categorías etiquetado; \texttt{CartSidebar}/\texttt{FavoritesSidebar} con \texttt{role="dialog"}, \texttt{aria-modal}, backdrop accionable; enlace «Saltar al contenido principal» y \texttt{<main id="main-content">} en \texttt{App.tsx}.
+\end{description}
+
+\textbf{Pendiente documentado:} menú móvil sin panel asociado; verificación de toasts con lector de pantalla.
+
+\subsection{Correcciones por ruta (resumen cualitativo)}
+
+Tras el layout global, cada página recibió ajustes en su componente (\texttt{src/pages/*.tsx}) y componentes compartidos (p.\,ej.\ tarjeta de producto), alineados con los fallos TAW de esa ruta:
+
+\begin{itemize}[noitemsep]
+  \item \textbf{Home} (\texttt{/}): semántica de listados, textos alternativos e interacción en portada.
+  \item \textbf{Auth}: etiquetas y grupos en login/registro; tabs y toggle de contraseña expuestos a AT.
+  \item \textbf{Products}: \texttt{alt} en imágenes del grid (mayor volumen de advertencias 1.1.1); encabezados y enlaces en tarjetas.
+  \item \textbf{Product detail / reviews}: galería, cantidad, valoración por estrellas con nombre y valor programático.
+  \item \textbf{Cart / Checkout}: cantidades, cupón, formulario de envío/pago, prevención de errores (3.3.x).
+  \item \textbf{Order confirmation}: resumen de pedido estructurado; mensaje de éxito (p.\,ej.\ región viva).
+  \item \textbf{404}: \texttt{h1} claro, enlaces descriptivos, estructura \texttt{main}.
+\end{itemize}
+
+Los commits W3C por ruta consolidaron, cuando aplicaba, referencias al shell ya corregido globalmente (metas e idioma).
+
+\subsection{Lo que permanece sin corregir en el repositorio}
+
+\begin{itemize}[noitemsep]
+  \item Badge \texttt{\#lovable-badge}: \texttt{role="complementary"} redundante (Warning HTML).
+  \item CSS del badge: \texttt{prefers-contrast: high} (Error); no presente en fuentes del proyecto.
+  \item Advertencias TAW de prioridad media/baja: contraste (1.4.3), zoom 200\% (1.4.4), foco visible (2.4.7), muchos criterios \emph{sin revisar} en TAW.
+\end{itemize}
+
+En build de producción sin Lovable, esos hallazgos W3C podrían desaparecer; conviene validarlo explícitamente.
+
+%----------------------------------------------------------------------
+\section{Mapa de commits de corrección}
+%----------------------------------------------------------------------
+
+La tabla siguiente enlaza cada par TAW/W3C con el ámbito documentado. Hashes abreviados (rama \texttt{release/taw-w3c-analitics}).
+
+{\footnotesize
+\begin{longtable}{@{}clcl@{}}
+\caption{20 commits \texttt{fix(a11y):} (orden cronológico inverso en \texttt{git log})} \\
+\toprule
+\textbf{\#} & \textbf{Commit} & \textbf{Ámbito} & \textbf{Alcance} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{\#} & \textbf{Commit} & \textbf{Ámbito} & \textbf{Alcance} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+1 & \texttt{6a95a97} & Global & TAW: Header, SubHeader, sidebars, skip link, \texttt{main} \\
+2 & \texttt{40d8ee1} & Global & W3C: \texttt{lang}, metas void en \texttt{index.html} \\
+3 & \texttt{60c684a} & \texttt{/} & TAW home \\
+4 & \texttt{42d3463} & \texttt{/} & W3C home (shell) \\
+5 & \texttt{668019b} & \texttt{/auth} & TAW \\
+6 & \texttt{20ece33} & \texttt{/auth} & W3C \\
+7 & \texttt{fc396b6} & \texttt{/products} & TAW catálogo \\
+8 & \texttt{b644b12} & \texttt{/products} & W3C \\
+9 & \texttt{9488dfa} & \texttt{/product/:id} & TAW ficha \\
+10 & \texttt{667b0cc} & \texttt{/product/:id} & W3C \\
+11 & \texttt{824f146} & \texttt{/product/:id/reviews} & TAW reseñas \\
+12 & \texttt{6008abf} & \texttt{/product/:id/reviews} & W3C \\
+13 & \texttt{22d87fc} & \texttt{/cart} & TAW \\
+14 & \texttt{413616c} & \texttt{/cart} & W3C \\
+15 & \texttt{1fc9522} & \texttt{/checkout} & TAW \\
+16 & \texttt{0d4cb0b} & \texttt{/checkout} & W3C \\
+17 & \texttt{4d94a75} & \texttt{/order-confirmation} & TAW \\
+18 & \texttt{40bdcf8} & \texttt{/order-confirmation} & W3C \\
+19 & \texttt{3d68ebf} & 404 & TAW \\
+20 & \texttt{e9ce583} & 404 & W3C \\
+\bottomrule
+\end{longtable}
+}
+
+\subsection{Commits de documentación previos}
+
+Antes de las correcciones, 19 commits \texttt{docs(a11y):} volcaron los informes TAW y W3C en \texttt{docs/a11y-audit/*.md} (desde \texttt{c335657} en home hasta \texttt{2235e87} en 404), más la plantilla inicial (\texttt{0342eb1}). Esa documentación es la fuente primaria de las tablas «antes» de este informe.
+
+%----------------------------------------------------------------------
+\section{Impacto en el producto}
+%----------------------------------------------------------------------
+
+\subsection{Experiencia de usuario y tecnologías de asistencia}
+
+\begin{itemize}[noitemsep]
+  \item \textbf{Navegación por teclado}: skip link y foco en contenido principal reducen repetición del chrome en cada ruta.
+  \item \textbf{Lectores de pantalla}: nombres accesibles en acciones del Header, diálogos modales en carrito/favoritos y estructura de listas mejoran la orientación.
+  \item \textbf{Formularios}: auth y checkout más utilizables al asociar etiquetas y exponer estados de error (trabajo parcial según advertencias pendientes).
+  \item \textbf{Catálogo}: corrección masiva de alternativas textuales en imágenes de producto --- impacto alto en \texttt{/products} (donde TAW reportó 60 advertencias 1.1.1).
+\end{itemize}
+
+\subsection{Conformidad técnica}
+
+\begin{itemize}[noitemsep]
+  \item HTML de plantilla alineado con convenciones HTML5 (void elements, idioma declarado).
+  \item Componentes React/shadcn más alineados con WCAG 4.1.2 (widgets con nombre y rol).
+  \item Deuda conocida: validación automática en dev seguirá mostrando errores del badge Lovable hasta desplegar sin esa inyección.
+\end{itemize}
+
+\subsection{Estado actual según índice del proyecto}
+
+Según \texttt{docs/a11y-audit/00-index.md} (actualizado tras correcciones):
+
+\begin{center}
+\small
+\begin{tabular}{@{}llcc@{}}
+\toprule
+\textbf{Ruta} & \textbf{Archivo doc.} & \textbf{W3C en repo} & \textbf{TAW en código} \\
+\midrule
+\texttt{/} … \texttt{*} & \texttt{home.md} … \texttt{not-found.md} & meta corregidos; badge dev & hecho \\
+Layout & \texttt{global.md} & idem & hecho \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Recomendación explícita del proyecto:} ejecutar de nuevo TAW y W3C en cada URL tras \texttt{bun run dev}, con el mismo viewport, y actualizar checkboxes «Re-auditada tras el fix» en cada \texttt{*.md}.
+
+%----------------------------------------------------------------------
+\section{Reflexión pedagógica}
+%----------------------------------------------------------------------
+
+\subsection{Complementariedad TAW y W3C}
+
+El validador W3C detectó problemas \textbf{sintácticos y de conformidad del documento} (metas, idioma) que TAW a veces agrupa bajo 3.1.1 pero no sustituye: un HTML inválido o inconsistente puede confundir parsers y AT. TAW, en cambio, expuso fallos \textbf{semánticos y de interacción} (ARIA, enlaces, formularios) invisibles para el validador de markup. Usar ambas herramientas evita una falsa sensación de cumplimiento solo por HTML válido.
+
+\subsection{Orden global $\rightarrow$ TAW $\rightarrow$ W3C por ámbito}
+
+Corregir primero el \textbf{layout global} fue pedagógicamente eficiente: un solo cambio en \texttt{index.html} (\texttt{lang}) y en Header/sidebars propagó mejoras a las nueve URLs auditadas. El patrón de commits (TAW luego W3C) obliga a separar «¿es comprensible para personas?» de «¿es un documento bien formado?», lo que facilita revisiones y \texttt{git bisect} si algo rompe el markup.
+
+\subsection{Límites de la auditoría automática}
+
+\begin{itemize}[noitemsep]
+  \item Muchos criterios quedaron \textbf{sin revisar} (contraste, teclado completo, tiempo).
+  \item Las \textbf{advertencias} (p.\,ej.\ 2.4.6 encabezados, 2.4.7 foco) siguen siendo deuda manual.
+  \item Hallazgos \textbf{del entorno} (Lovable) enseñan a filtrar ruido: no todo lo que reporta el validador es responsabilidad del equipo si no está en el repositorio.
+  \item TAW en SPA React valida el \textbf{DOM renderizado}: conviene repetir pruebas tras hidratación y con estados distintos (carrito vacío/lleno, login/registro).
+\end{itemize}
+
+\subsection{Lecciones para futuros ciclos}
+
+\begin{enumerate}[noitemsep]
+  \item Documentar antes de codificar (\texttt{docs/a11y-audit/}) crea trazabilidad y evita regresiones.
+  \item Extraer componentes repetidos (\texttt{ProductCard}, rating) cuando una ruta concentra decenas de incidencias del mismo criterio.
+  \item Planificar \textbf{pruebas con lector de pantalla} y zoom 200\% como complemento obligatorio al cierre.
+  \item Validar \textbf{producción} para confirmar ausencia del badge y del error CSS asociado.
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\section{Conclusiones}
+%----------------------------------------------------------------------
+
+La auditoría TAW + W3C del proyecto GlowLab identificó un patrón homogéneo de fallos WCAG AA en contenido no textual, estructura, enlaces, idioma, formularios y robustez ARIA, junto con mejoras menores pero sistemáticas en \texttt{index.html}. Mediante 20 commits estructurados y documentación exhaustiva en \texttt{docs/a11y-audit/}, el equipo abordó las correcciones prioritarias en código; el índice del proyecto refleja estado \textbf{hecho} pendiente de verificación manual.
+
+El informe no sustituye una \textbf{re-auditoría}: debe repetirse TAW y validator.w3.org en cada ruta, completar criterios sin revisar y cerrar advertencias de foco, contraste y formularios transaccionales (3.3.4 en checkout). Los hallazgos del badge Lovable en desarrollo deben interpretarse como limitación del entorno, no como bloqueo de las mejoras ya integradas en el repositorio.
+
+%----------------------------------------------------------------------
+\section{Anexos}
+%----------------------------------------------------------------------
+
+\subsection{Anexo A --- Criterios WCAG citados (referencia breve)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{ID} & \textbf{Título (resumido)} \\
+\midrule
+1.1.1 & Contenido no textual \\
+1.3.1 & Información y relaciones \\
+2.4.4 & Propósito del enlace (en contexto) \\
+3.1.1 & Idioma de la página \\
+3.2.2 & Entrada que provoca cambio de contexto \\
+3.3.2 & Etiquetas o instrucciones \\
+4.1.2 & Nombre, función, valor (UI components) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Anexo B --- Archivos de documentación fuente}
+
+\begin{itemize}[noitemsep]
+  \item \texttt{docs/a11y-audit/00-index.md} --- checklist global
+  \item \texttt{docs/a11y-audit/README.md} --- procedimiento de auditoría
+  \item \texttt{docs/a11y-audit/global.md} --- layout compartido
+  \item \texttt{docs/a11y-audit/home.md}, \texttt{auth.md}, \texttt{products.md}, \texttt{product-detail.md}, \texttt{product-reviews.md}, \texttt{cart.md}, \texttt{checkout.md}, \texttt{order-confirmation.md}, \texttt{not-found.md}
+\end{itemize}
+
+\subsection{Anexo C --- Compilación del PDF}
+
+Desde la carpeta \texttt{docs/}:
+
+\begin{verbatim}
+pdflatex informe-auditoria-accesibilidad.tex
+pdflatex informe-auditoria-accesibilidad.tex
+\end{verbatim}
+
+Segunda pasada recomendada para el índice y referencias cruzadas de \texttt{hyperref}.
+
+\end{document}
